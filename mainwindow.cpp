@@ -1,20 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "QFileDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPushButton * btn = new QPushButton;
-    btn->setParent(this);
-    btn->resize(100,28);
-    btn->setText("Firstbutton");
-    btn->move(100,100);
-    setFixedSize(400,640);
-    setWindowTitle("Reciter");
-
-    connect(btn,&QPushButton::clicked,this,&QWidget::close);
 }
 
 MainWindow::~MainWindow()
@@ -22,7 +14,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_goStudy_clicked()
 {
 
+}
+
+void MainWindow::on_changeList_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(
+            this,
+            tr("选择"),
+            "./",
+            tr("textfile(*.txt)"));
 }
