@@ -27,11 +27,15 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    chooselist.cpp
+    chooselist.cpp \
+    worditem.cpp \
+    reciter.cpp
 
 HEADERS += \
         mainwindow.h \
-    chooselist.h
+    chooselist.h \
+    worditem.h \
+    reciter.h
 
 FORMS += \
         mainwindow.ui \
