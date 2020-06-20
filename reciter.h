@@ -2,7 +2,7 @@
 #define RECITER_H
 
 #include <iostream>
-#include<vector>
+#include <vector>
 #include "worditem.h"
 using namespace std;
 
