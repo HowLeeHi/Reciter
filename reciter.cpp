@@ -20,6 +20,7 @@ public:
 Reciter::Reciter()
 {
     this->wordlist_address = "wordlist.txt";
+    this->load_wordlist();
 }
 
 

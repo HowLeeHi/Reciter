@@ -1,4 +1,4 @@
-#ifndef WORDITEM_H
+﻿#ifndef WORDITEM_H
 #define WORDITEM_H
 
 #include <iostream>
@@ -8,14 +8,13 @@ using namespace std;
 
 class WordItem				//一个单词项
 {
-private:
+public:
     string word;			//英文拼写
     string part_of_speech;	//发音
     string meaning;			//汉语解释
     string example;			//例句
     string example_meaning;	//例句解释
 
-public:
     WordItem();
     ~WordItem();
     void display()

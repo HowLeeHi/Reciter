@@ -11,8 +11,9 @@ class Reciter
 {
 private:
     string wordlist_address;		        //单词表文件按目标路径
-    vector<WordItem> wordlist;              //存放单词，向量内的元素为WordItem类对象
 public:
+    vector<WordItem> wordlist;              //存放单词，向量内的元素为WordItem类对象
+
     Reciter();
     ~Reciter();
     void run();						        //开始运行背单词软件

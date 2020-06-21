@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "reciter.h"
+#include <QTextCodec>
 
 namespace Ui {
 class MainWindow;
@@ -17,18 +18,25 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private slots:
-    void on_goStudy_clicked();
-
     void on_changeList_clicked();
+
+    void on_goStudy_clicked();
 
     void on_reviewAndTest_clicked();
 
     void on_GoStudy_back_clicked();
 
-    void on_GoStudy_back_2_clicked();
+    void on_ReviewAndTest_back_clicked();
+
+    void on_GoStudy_unknow_clicked();
+
+    void on_GoStudy_next_clicked();
+
+    void on_GoStudy_know_clicked();
 
 private:
     Ui::MainWindow *ui;
+    unsigned int index;
 };
 
 #endif // MAINWINDOW_H

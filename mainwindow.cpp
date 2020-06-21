@@ -1,22 +1,20 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qfiledialog.h"
+#pragma execution_character_set("utf-8")
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->index = 0;
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::on_goStudy_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::on_changeList_clicked()    //手动选择文件
@@ -31,9 +29,44 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
     file_name = fi.fileName();
     file_path = fi.absolutePath();
 
-    this->reciter.set_address(file_name.toStdString());
+    if(file_name.isEmpty())
+    {
+        this->reciter.set_address("wordlist.txt");
+        ui->wordListName->setText("wordlist");
+    }
+    else
+    {
+        this->reciter.set_address(file_name.toStdString());
+        ui->wordListName->setText(file_name.remove(".txt"));
+    }
+
     this->reciter.load_wordlist();
-    ui->wordListName->setText(file_name.remove(".txt"));
+}
+
+void MainWindow::on_goStudy_clicked()
+{
+    QTextCodec *codec=QTextCodec::codecForName("GB2312");
+
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget_2->setCurrentIndex(0);
+
+    ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->index].word));
+    ui->GoStudy_newWord->adjustSize();
+
+    ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->index].word));
+    ui->GoStudy_word->adjustSize();
+
+    ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->index].part_of_speech));
+    ui->GoStudy_partOfSpeech->adjustSize();
+
+    ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->index].meaning.c_str()));
+    ui->GoStudy_meaning->adjustSize();
+
+    ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->index].example));
+    ui->GoStudy_example->adjustSize();
+
+    ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->index].example_meaning.c_str()));
+    ui->GoStudy_exampleMeaning->adjustSize();
 }
 
 void MainWindow::on_reviewAndTest_clicked()
@@ -44,9 +77,81 @@ void MainWindow::on_reviewAndTest_clicked()
 void MainWindow::on_GoStudy_back_clicked()
 {
      ui->stackedWidget->setCurrentIndex(0);
+     this->index = 0;
+     ui->stackedWidget_2->setCurrentIndex(0);
 }
 
-void MainWindow::on_GoStudy_back_2_clicked()
+void MainWindow::on_ReviewAndTest_back_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    this->index = 0;
+}
+
+void MainWindow::on_GoStudy_unknow_clicked()
+{
+    ui->stackedWidget_2->setCurrentIndex(1);
+}
+
+void MainWindow::on_GoStudy_next_clicked()
+{
+    if(++(this->index)>=this->reciter.wordlist.size())
+    {
+        ui->stackedWidget_2->setCurrentIndex(2);
+    }
+    else
+    {
+        QTextCodec *codec=QTextCodec::codecForName("GB2312");
+
+        ui->stackedWidget_2->setCurrentIndex(0);
+
+        ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->index].word));
+        ui->GoStudy_newWord->adjustSize();
+
+        ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->index].word));
+        ui->GoStudy_word->adjustSize();
+
+        ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->index].part_of_speech));
+        ui->GoStudy_partOfSpeech->adjustSize();
+
+        ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->index].meaning.c_str()));
+        ui->GoStudy_meaning->adjustSize();
+
+        ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->index].example));
+        ui->GoStudy_example->adjustSize();
+
+        ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->index].example_meaning.c_str()));
+        ui->GoStudy_exampleMeaning->adjustSize();
+    }
+}
+
+void MainWindow::on_GoStudy_know_clicked()
+{
+    if(++(this->index)>=this->reciter.wordlist.size())
+    {
+        ui->stackedWidget_2->setCurrentIndex(2);
+    }
+    else
+    {
+        QTextCodec *codec=QTextCodec::codecForName("GB2312");
+
+        ui->stackedWidget_2->setCurrentIndex(0);
+
+        ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->index].word));
+        ui->GoStudy_newWord->adjustSize();
+
+        ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->index].word));
+        ui->GoStudy_word->adjustSize();
+
+        ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->index].part_of_speech));
+        ui->GoStudy_partOfSpeech->adjustSize();
+
+        ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->index].meaning.c_str()));
+        ui->GoStudy_meaning->adjustSize();
+
+        ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->index].example));
+        ui->GoStudy_example->adjustSize();
+
+        ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->index].example_meaning.c_str()));
+        ui->GoStudy_exampleMeaning->adjustSize();
+    }
 }
