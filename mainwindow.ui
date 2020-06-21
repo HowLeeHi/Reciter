@@ -241,9 +241,9 @@
      <widget class="QStackedWidget" name="stackedWidget_2">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>0</x>
         <y>75</y>
-        <width>300</width>
+        <width>400</width>
         <height>450</height>
        </rect>
       </property>
@@ -251,10 +251,10 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="page">
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>100</x>
           <y>320</y>
           <width>195</width>
           <height>31</height>
@@ -277,13 +277,13 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>100</x>
           <y>140</y>
           <width>194</width>
-          <height>28</height>
+          <height>34</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -305,7 +305,7 @@
            <property name="font">
             <font>
              <family>Arial Black</family>
-             <pointsize>11</pointsize>
+             <pointsize>14</pointsize>
             </font>
            </property>
            <property name="text">
@@ -335,7 +335,7 @@
          <rect>
           <x>0</x>
           <y>10</y>
-          <width>291</width>
+          <width>402</width>
           <height>271</height>
          </rect>
         </property>
@@ -374,14 +374,35 @@
          </item>
          <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="GoStudy_example">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>360</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>360</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>TextLabel</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::PlainText</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -391,13 +412,31 @@
          <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="GoStudy_exampleMeaning">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>360</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>360</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>TextLabel</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::PlainText</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -409,7 +448,7 @@
        <widget class="QPushButton" name="GoStudy_next">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>150</x>
           <y>340</y>
           <width>93</width>
           <height>28</height>
@@ -426,8 +465,8 @@
          <rect>
           <x>70</x>
           <y>220</y>
-          <width>168</width>
-          <height>28</height>
+          <width>271</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
