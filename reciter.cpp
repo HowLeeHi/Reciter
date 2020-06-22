@@ -19,7 +19,8 @@ public:
 
 Reciter::Reciter()
 {
-    this->wordlist_address = "wordlist.txt";
+    cout<<this->settings.filepath_record;
+    this->wordlist_address = this->settings.filepath_record;
     this->load_wordlist();
 }
 
@@ -79,11 +80,18 @@ void Reciter::create_wordlist()
     }
 }
 
+void Reciter::clear_wordlist()
+{
+    vector<WordItem> clear;
+    this->wordlist.swap(clear);
+}
+
 //将文件里的单词表以WordItem类vector的形式存放在内存中
 void Reciter::load_wordlist()
 {
     WordItem wi;
     ifstream fin(this->wordlist_address);
+    this->wordlist.clear();
     while (fin >> wi){
         this->wordlist.push_back(wi);
     }

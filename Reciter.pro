@@ -27,19 +27,20 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    chooselist.cpp \
     worditem.cpp \
-    reciter.cpp
+    reciter.cpp \
+    settings.cpp \
+    log.cpp
 
 HEADERS += \
         mainwindow.h \
-    chooselist.h \
     worditem.h \
-    reciter.h
+    reciter.h \
+    settings.h \
+    log.h
 
 FORMS += \
-        mainwindow.ui \
-    chooselist.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

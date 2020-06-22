@@ -34,6 +34,10 @@ private slots:
 
     void on_GoStudy_know_clicked();
 
+    void on_Schedule_back_clicked();
+
+    void on_changePlan_clicked();
+
 private:
     Ui::MainWindow *ui;
     unsigned int index;

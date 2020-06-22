@@ -4,14 +4,15 @@
 #include <iostream>
 #include <vector>
 #include "worditem.h"
+#include "settings.h"
 using namespace std;
 
 
 class Reciter
 {
-private:
-    string wordlist_address;		        //单词表文件按目标路径
 public:
+    Settings settings;                      //存放设置信息
+    string wordlist_address;		        //单词表文件按目标路径
     vector<WordItem> wordlist;              //存放单词，向量内的元素为WordItem类对象
 
     Reciter();
@@ -24,6 +25,7 @@ public:
     void set_address(string wladdr)         //设定单词表文件目标路径
     { this->wordlist_address = wladdr; }
     void create_wordlist();			        //创建一个单词表
+    void clear_wordlist();                  //清空一个单词表
     void load_wordlist();			        //打开一个单词表
     bool save_wordlist();			        //保存一个单词表
     void sort_wordlist();			        //整理单词表（从字母a~z排序）
