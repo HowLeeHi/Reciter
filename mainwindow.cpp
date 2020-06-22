@@ -36,7 +36,7 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
         ui->wordListName->setText("null");
 
         this->reciter.settings.filename_record = "null";
-        this->reciter.settings.filepath_record = "./null.txt";
+        this->reciter.settings.filepath_record = "./";
         this->reciter.settings.write();
     }
     else

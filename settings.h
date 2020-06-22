@@ -3,6 +3,7 @@
 
 #include <string>
 #include <fstream>
+#include <direct.h>
 using namespace std;
 
 class Settings
