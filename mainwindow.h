@@ -38,6 +38,8 @@ private slots:
 
     void on_changePlan_clicked();
 
+    void on_test_confirm_button_released();
+
 private:
     Ui::MainWindow *ui;
     unsigned int index;

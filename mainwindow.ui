@@ -59,7 +59,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainMenu">
      <widget class="QWidget" name="layoutWidget">
@@ -223,7 +223,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -340,7 +340,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -407,7 +407,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QWidget" name="layoutWidget">
@@ -660,6 +660,122 @@
        <string>返回</string>
       </property>
      </widget>
+     <widget class="QStackedWidget" name="stackedWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>49</y>
+        <width>401</width>
+        <height>501</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="page_4">
+       <widget class="QLabel" name="test_title">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>361</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>                  本考试共有20个题，全部为选择题，每题1分。
+                   选择你认为正确的答案，点击确认开始考试。</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="test_confirm_button">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>160</y>
+          <width>121</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>确认</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_5">
+       <widget class="QLabel" name="question">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>60</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>question</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="options">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>127</y>
+          <width>171</width>
+          <height>221</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>options:</string>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QRadioButton" name="Button_A">
+           <property name="text">
+            <string>Button_A</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="Button_B">
+           <property name="text">
+            <string>Button_B</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="Button_D">
+           <property name="text">
+            <string>Button_C</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="Button_C">
+           <property name="text">
+            <string>Button_D</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="test_next">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>390</y>
+          <width>81</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Next</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="Schedule">
      <widget class="QPushButton" name="Schedule_back">
@@ -684,7 +800,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

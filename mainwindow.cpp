@@ -85,10 +85,7 @@ void MainWindow::on_goStudy_clicked()
     }
 }
 
-void MainWindow::on_reviewAndTest_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(2);
-}
+
 
 void MainWindow::on_GoStudy_back_clicked()
 {
@@ -97,11 +94,7 @@ void MainWindow::on_GoStudy_back_clicked()
      ui->stackedWidget_2->setCurrentIndex(0);
 }
 
-void MainWindow::on_ReviewAndTest_back_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-    this->index = 0;
-}
+
 
 void MainWindow::on_GoStudy_unknow_clicked()
 {
@@ -180,4 +173,24 @@ void MainWindow::on_Schedule_back_clicked()
 void MainWindow::on_changePlan_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_reviewAndTest_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget_3->setCurrentIndex(0);
+}
+
+void MainWindow::on_ReviewAndTest_back_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    this->index = 0;
+}
+
+
+
+void MainWindow::on_test_confirm_button_released()
+{
+    ui->stackedWidget_3->setCurrentIndex(1);
+
 }
