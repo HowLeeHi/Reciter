@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->index = 0;
     ui->stackedWidget->setCurrentIndex(0);
-    ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record).remove(".txt"));
+    ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
 }
 
 MainWindow::~MainWindow()
@@ -35,13 +35,13 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
         this->reciter.set_address("null.txt");
         ui->wordListName->setText("null");
 
-        this->reciter.settings.filename_record = "null.txt";
+        this->reciter.settings.filename_record = "null";
         this->reciter.settings.filepath_record = "./null.txt";
         this->reciter.settings.write();
     }
     else
     {
-        this->reciter.set_address(file_name.toStdString());
+        this->reciter.set_address(file_full.toStdString());
         ui->wordListName->setText(file_name.remove(".txt"));
 
         this->reciter.settings.filename_record = file_name.toStdString();
@@ -56,12 +56,10 @@ void MainWindow::on_goStudy_clicked()
 {
     QTextCodec *codec=QTextCodec::codecForName("GB2312");
 
-    this->reciter.load_wordlist();
-
     ui->stackedWidget->setCurrentIndex(1);
     ui->stackedWidget_2->setCurrentIndex(0);
 
-    if(++(this->index)>=this->reciter.wordlist.size())
+    if(this->index>=this->reciter.wordlist.size())
     {
         ui->stackedWidget_2->setCurrentIndex(2);
     }

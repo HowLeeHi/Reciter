@@ -20,7 +20,7 @@ public:
 Reciter::Reciter()
 {
     cout<<this->settings.filepath_record;
-    this->wordlist_address = this->settings.filepath_record;
+    this->wordlist_address = this->settings.filepath_record+"/"+this->settings.filename_record+".txt";
     this->load_wordlist();
 }
 
