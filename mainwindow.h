@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include "reciter.h"
 #include <QTextCodec>
-
+#include <QButtonGroup>
 namespace Ui {
 class MainWindow;
 }
@@ -40,9 +40,27 @@ private slots:
 
     void on_test_confirm_button_released();
 
+    void on_test_next_released();
+
+    void on_Button_A_released();
+
+    void on_Button_B_released();
+
+    void on_Button_C_released();
+
+    void on_Button_D_released();
+
 private:
     Ui::MainWindow *ui;
     unsigned int index;
+    //----------测验用--------------
+    int scores;
+    unsigned int index_options[4];
+    int ans;
+    int testnum = 10;
+    int n = 0;
+    unsigned int index_testNum[10];
+
 };
 
 #endif // MAINWINDOW_H

@@ -32,10 +32,10 @@ public:
     int add_word();                         //添加一个新单词
     int delete_word(int i);                 //删除第i个WordNode节点，失败则返回值为负数
     int search_word(string word);           //查询功能，打印详情， 返回对应下标
-    bool test_answer_CN(int i);			    //选择汉语解释，返回正误
-    bool test_answer_ENG(int i);			//选择英语解释，返回正误
+    int test_answer_CN(unsigned int i, unsigned int array[4]);			    //选择汉语解释，返回正误
+    int test_answer_ENG(unsigned int i, unsigned int array[4]);			//选择英语解释，返回正误
     void search_Word();                     //模拟查找单词
-    void exam();                            //模拟考试
+    void exam(int testNum, unsigned int *array);                            //模拟考试
 };
 
 
