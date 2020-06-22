@@ -407,7 +407,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QWidget" name="layoutWidget">
@@ -670,21 +670,24 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QLabel" name="test_title">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>30</y>
-          <width>361</width>
-          <height>91</height>
+          <x>-20</x>
+          <y>20</y>
+          <width>401</width>
+          <height>121</height>
          </rect>
         </property>
         <property name="text">
-         <string>                  本考试共有20个题，全部为选择题，每题1分。
+         <string>                  本考试共有10个题，全部为选择题，每题1分。
                    选择你认为正确的答案，点击确认开始考试。</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
         </property>
        </widget>
        <widget class="QPushButton" name="test_confirm_button">
@@ -705,7 +708,7 @@
        <widget class="QLabel" name="question">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>150</x>
           <y>60</y>
           <width>121</width>
           <height>31</height>
@@ -718,10 +721,10 @@
        <widget class="QGroupBox" name="options">
         <property name="geometry">
          <rect>
-          <x>110</x>
-          <y>127</y>
-          <width>171</width>
-          <height>221</height>
+          <x>20</x>
+          <y>97</y>
+          <width>361</width>
+          <height>321</height>
          </rect>
         </property>
         <property name="title">
@@ -765,13 +768,41 @@
         <property name="geometry">
          <rect>
           <x>150</x>
-          <y>390</y>
+          <y>430</y>
           <width>81</width>
           <height>31</height>
          </rect>
         </property>
         <property name="text">
          <string>Next</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_6">
+       <widget class="QLabel" name="grade">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>110</y>
+          <width>261</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您得了&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="grade1">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>180</y>
+          <width>54</width>
+          <height>12</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
         </property>
        </widget>
       </widget>

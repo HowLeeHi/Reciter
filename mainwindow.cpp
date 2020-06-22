@@ -191,6 +191,75 @@ void MainWindow::on_ReviewAndTest_back_clicked()
 
 void MainWindow::on_test_confirm_button_released()
 {
+    //跳转到题目界面，初始化分数和题目
     ui->stackedWidget_3->setCurrentIndex(1);
+    this->scores = 0;
+    this->reciter.exam(testnum, index_testNum);
+    //显示第一题题面
+    this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
+    QTextCodec *codec=QTextCodec::codecForName("GB2312");
+    ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->ans].getEnglish()));
+    ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
+    ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
+    ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
+    ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
+    n++;
+}
 
+
+void MainWindow::on_test_next_released()
+{
+    if(n < this->testnum){
+        //更新题面
+        this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
+        QTextCodec *codec=QTextCodec::codecForName("GB2312");
+        ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->ans].getEnglish()));
+        ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
+        ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
+        ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
+        ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
+        n++;
+    } else {
+        ui->stackedWidget_3->setCurrentIndex(2);
+        if(scores < testnum * 0.6){
+            ui->grade->setText("您只得了              分><, 尚需努力！");
+            ui->grade1->setNum(scores);
+           }
+           else if((scores >= testnum * 0.6) && (scores < testnum * 0.85)){
+            ui->grade->setText("您得了              分， 及格颇有余，优秀尚不足，加油！");
+            ui->grade1->setNum(scores);
+           }
+           else if((scores >= testnum * 0.85) && (scores < testnum)){
+            ui->grade->setText("您得了              分， 非常优秀，加油！");
+            ui->grade1->setNum(scores);
+           }
+           else if(scores == testnum){
+            ui->grade->setText("您得了满分！");
+           }
+    }
+}
+
+void MainWindow::on_Button_A_released()
+{
+    if(ans==0){
+        this->scores++;
+    }
+}
+void MainWindow::on_Button_B_released()
+{
+    if(ans==1){
+        this->scores++;
+    }
+}
+void MainWindow::on_Button_C_released()
+{
+    if(ans==2){
+        this->scores++;
+    }
+}
+void MainWindow::on_Button_D_released()
+{
+    if(ans==3){
+        this->scores++;
+    }
 }
