@@ -181,7 +181,7 @@ int Reciter::test_answer_CN(unsigned int i, unsigned int array[4])
     return ans;
 }
 
-//选择英语解释，返回正误
+//选择英语解释，利用数组返回4个选项，返回值为正确选项
 int Reciter::test_answer_ENG(unsigned int i, unsigned int array[4])
 {
     srand(unsigned(time(0)));
@@ -231,26 +231,28 @@ void Reciter::search_Word()
     }
 }
 
-// 汉译英 + 英译汉 返回 testnum 个题目
-void Reciter::exam(int testNum, unsigned int *array) //array存放单词所对应的编号
+// 汉译英 + 英译汉array存储testnum个题目，单词表为空返回false
+bool Reciter::exam(int testNum, unsigned int *array) //array存放单词所对应的编号
 {
-    //随机选取testNum个单词
-    srand(unsigned(time(0)));
-    for(int i = 0; i < testNum; i++){
-        unsigned int tmp = rand()%(this->get_size());
-        //检查随机生成的单词是否重复
-        bool repeat=false;
-        for(int j=0;j<i;j++){
-            if(array[j] == tmp)
-                repeat=true;
+    if(this->get_size()>0){
+        //随机选取testNum个单词
+        srand(unsigned(time(0)));
+        for(int i = 0; i < testNum; i++){
+            unsigned int tmp = rand()%(this->get_size());
+            //检查随机生成的单词是否重复
+            bool repeat=false;
+            for(int j=0;j<i;j++){
+                if(array[j] == tmp)
+                    repeat=true;
+            }
+            if(repeat)
+                i--;
+            else
+                array[i]=tmp;
         }
-        if(repeat)
-            i--;
-        else
-            array[i]=tmp;
+        return true;
     }
-    //开始考试
-    //考试成绩
+    return false;
 }
 
 void Reciter::run()

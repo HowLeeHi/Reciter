@@ -58,7 +58,7 @@ private:
     unsigned int index_options[4];
     int ans;
     int testnum = 10;
-    int n = 0;
+    int n;
     unsigned int index_testNum[10];
 
 };

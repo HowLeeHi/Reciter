@@ -191,14 +191,21 @@ void MainWindow::on_ReviewAndTest_back_clicked()
 
 void MainWindow::on_test_confirm_button_released()
 {
+    if(!this->reciter.exam(testnum, index_testNum)){
+        ui->test_title->setText("单词表为空，请重新添加");
+        ui->test_title->adjustSize();
+        return;
+    }
     //跳转到题目界面，初始化分数和题目
+    ui->test_title->adjustSize();
     ui->stackedWidget_3->setCurrentIndex(1);
     this->scores = 0;
-    this->reciter.exam(testnum, index_testNum);
+    this->n = 0;
+
     //显示第一题题面
     this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
     QTextCodec *codec=QTextCodec::codecForName("GB2312");
-    ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->ans].getEnglish()));
+    ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->index_testNum[n]].getEnglish()));
     ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
     ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
     ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
@@ -210,14 +217,19 @@ void MainWindow::on_test_confirm_button_released()
 void MainWindow::on_test_next_released()
 {
     if(n < this->testnum){
-        //更新题面
+        //更新题面.英译汉
         this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
         QTextCodec *codec=QTextCodec::codecForName("GB2312");
-        ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->ans].getEnglish()));
+        ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->index_testNum[n]].getEnglish()));
+        ui->question->adjustSize();
         ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
         ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
         ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
         ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
+        ui->Button_A->adjustSize();
+        ui->Button_B->adjustSize();
+        ui->Button_C->adjustSize();
+        ui->Button_D->adjustSize();
         n++;
     } else {
         ui->stackedWidget_3->setCurrentIndex(2);

@@ -35,7 +35,7 @@ public:
     int test_answer_CN(unsigned int i, unsigned int array[4]);			    //选择汉语解释，返回正误
     int test_answer_ENG(unsigned int i, unsigned int array[4]);			//选择英语解释，返回正误
     void search_Word();                     //模拟查找单词
-    void exam(int testNum, unsigned int *array);                            //模拟考试
+    bool exam(int testNum, unsigned int *array);                            //模拟考试
 };
 
 

@@ -676,15 +676,15 @@
        <widget class="QLabel" name="test_title">
         <property name="geometry">
          <rect>
-          <x>-20</x>
-          <y>20</y>
-          <width>401</width>
-          <height>121</height>
+          <x>40</x>
+          <y>60</y>
+          <width>321</width>
+          <height>111</height>
          </rect>
         </property>
         <property name="text">
-         <string>                  本考试共有10个题，全部为选择题，每题1分。
-                   选择你认为正确的答案，点击确认开始考试。</string>
+         <string>本考试共有10个题，全部为选择题，每题1分。
+选择你认为正确的答案，点击确认开始考试。</string>
         </property>
         <property name="textFormat">
          <enum>Qt::AutoText</enum>
@@ -693,8 +693,8 @@
        <widget class="QPushButton" name="test_confirm_button">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>160</y>
+          <x>130</x>
+          <y>240</y>
           <width>121</width>
           <height>61</height>
          </rect>
@@ -708,14 +708,14 @@
        <widget class="QLabel" name="question">
         <property name="geometry">
          <rect>
-          <x>150</x>
-          <y>60</y>
-          <width>121</width>
-          <height>31</height>
+          <x>130</x>
+          <y>50</y>
+          <width>191</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="text">
-         <string>question</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;question&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
        <widget class="QGroupBox" name="options">
@@ -782,10 +782,10 @@
        <widget class="QLabel" name="grade">
         <property name="geometry">
          <rect>
-          <x>70</x>
+          <x>10</x>
           <y>110</y>
-          <width>261</width>
-          <height>151</height>
+          <width>381</width>
+          <height>221</height>
          </rect>
         </property>
         <property name="text">
@@ -795,14 +795,14 @@
        <widget class="QLabel" name="grade1">
         <property name="geometry">
          <rect>
-          <x>150</x>
-          <y>180</y>
-          <width>54</width>
-          <height>12</height>
+          <x>110</x>
+          <y>200</y>
+          <width>16</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string>*分</string>
         </property>
        </widget>
       </widget>
