@@ -18,8 +18,15 @@ public:
 
 Reciter::Reciter()
 {
-    cout<<this->settings.filepath_record;
+    ifstream fin;
+
+    ofstream fout("null.txt"); //生成程序必须的null.txt
+    fout << "";
+
     this->wordlist_address = this->settings.filepath_record+"/"+this->settings.filename_record+".txt";
+    fin.open(this->wordlist_address);
+    if(!fin) this->set_address("null.txt");
+
     this->load_wordlist();
 }
 
@@ -27,8 +34,6 @@ Reciter::Reciter()
 Reciter::~Reciter()
 {
 }
-
-
 
 void Reciter::display()
 {

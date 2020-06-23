@@ -9,7 +9,17 @@ void Settings::read()
 {
     ifstream fin("./settings/settings.txt");
 
-    fin >> this->filename_record >> this->filepath_record;
+    if(fin)
+    {
+        fin >> this->filename_record >> this->filepath_record;
+    }
+    else    //如果缺少必要的文件系统，就自动创建
+    {
+        this->filename_record = "null";
+        this->filepath_record = "./";
+        _mkdir("./settings/");
+        this->write();
+    }
 }
 
 void Settings::write()
