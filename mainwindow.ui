@@ -382,6 +382,29 @@
        </item>
       </layout>
      </widget>
+     <widget class="QLineEdit" name="search_line">
+      <property name="geometry">
+       <rect>
+        <x>82</x>
+        <y>70</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>70</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>搜索</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="GoStudy">
      <widget class="QPushButton" name="GoStudy_back">
@@ -407,7 +430,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QWidget" name="layoutWidget">
@@ -699,136 +722,220 @@
        <number>1</number>
       </property>
       <widget class="QWidget" name="page_4">
-       <widget class="QLabel" name="test_title">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>60</y>
-          <width>321</width>
-          <height>111</height>
+          <y>20</y>
+          <width>341</width>
+          <height>391</height>
          </rect>
         </property>
-        <property name="text">
-         <string>本考试共有10个题，全部为选择题，每题1分。
-选择你认为正确的答案，点击确认开始考试。</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="test_confirm_button">
-        <property name="geometry">
-         <rect>
-          <x>130</x>
-          <y>240</y>
-          <width>121</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>确认</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_5">
-       <widget class="QLabel" name="question">
-        <property name="geometry">
-         <rect>
-          <x>130</x>
-          <y>50</y>
-          <width>191</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;question&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="options">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>97</y>
-          <width>361</width>
-          <height>321</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>options:</string>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QRadioButton" name="Button_A">
+        <layout class="QGridLayout" name="gridLayout_7">
+         <item row="3" column="0" colspan="2">
+          <spacer name="verticalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="2" column="1">
+          <widget class="QRadioButton" name="En_Zh">
            <property name="text">
-            <string>Button_A</string>
+            <string>英译汉</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QRadioButton" name="Button_B">
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="test_title">
            <property name="text">
-            <string>Button_B</string>
+            <string>exam</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QRadioButton" name="Button_D">
+         <item row="4" column="0" colspan="2">
+          <widget class="QPushButton" name="test_confirm_button">
            <property name="text">
-            <string>Button_C</string>
+            <string>确认</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QRadioButton" name="Button_C">
+         <item row="2" column="0">
+          <widget class="QRadioButton" name="Zh_En">
            <property name="text">
-            <string>Button_D</string>
+            <string>汉译英</string>
            </property>
           </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
-       <widget class="QPushButton" name="test_next">
+      </widget>
+      <widget class="QWidget" name="page_5">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>150</x>
-          <y>430</y>
-          <width>81</width>
-          <height>31</height>
+          <x>20</x>
+          <y>30</y>
+          <width>351</width>
+          <height>441</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Next</string>
-        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignTop">
+          <widget class="QLabel" name="question">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>21</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;question&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="3" column="0">
+          <widget class="QPushButton" name="test_next">
+           <property name="text">
+            <string>Next</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QGroupBox" name="options">
+           <property name="title">
+            <string>options:</string>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <item row="2" column="0">
+             <widget class="QRadioButton" name="Button_B">
+              <property name="text">
+               <string>Button_B</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="4" column="0">
+             <widget class="QRadioButton" name="Button_D">
+              <property name="text">
+               <string>Button_C</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QRadioButton" name="Button_C">
+              <property name="text">
+               <string>Button_D</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="Button_A">
+              <property name="text">
+               <string>Button_A</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="5" column="0">
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="page_6">
        <widget class="QLabel" name="grade">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>110</y>
-          <width>381</width>
-          <height>221</height>
+          <x>70</x>
+          <y>150</y>
+          <width>251</width>
+          <height>101</height>
          </rect>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您得了&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="grade1">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>200</y>
-          <width>16</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>*分</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;您得了&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </widget>
@@ -971,7 +1078,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -1117,7 +1224,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

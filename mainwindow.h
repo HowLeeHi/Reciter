@@ -1,11 +1,13 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <stdlib.h>
+#include <stdio.h>
 #include <QMainWindow>
 #include "reciter.h"
 #include <QTextCodec>
 #include <QButtonGroup>
-#include <QDate>
+#include <QMessageBox>
 namespace Ui {
 class MainWindow;
 }
@@ -51,22 +53,22 @@ private slots:
 
     void on_Button_D_released();
 
-    void on_dateEdit_userDateChanged(const QDate &date);
+    void on_En_Zh_clicked();
 
-    void on_Schudule_OK_clicked();
-
-    void on_Schedule_reset_clicked();
+    void on_Zh_En_clicked();
+    void search();
 
 private:
     Ui::MainWindow *ui;
-    unsigned int index;     //下一个需学习的单词下标
+    unsigned int index;
     //----------测验用--------------
-    int scores;
-    unsigned int index_options[4];
-    int ans;
-    int testnum = 10;
-    int n;
-    unsigned int index_testNum[10];
+    int scores;                         //分数
+    unsigned int index_options[4];      //选项对应单词表下标
+    int ans;                            //正确选项
+    int testnum = 10;                   //题目数量 (0-99)
+    bool exam_flag = true;              //考试类型 true：英译汉  false：汉译英 (默认为true)
+    int n;                              //考试进度 （0 - testnum）
+    unsigned int index_testNum[10];     //题目对应单词表下标
 
 };
 

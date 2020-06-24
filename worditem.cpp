@@ -45,7 +45,7 @@ ostream & operator <<(ostream & os, WordItem & wl)
 
     if (wl.part_of_speech == "")
     {
-        os << "<暂无发音>";
+        os << "<暂无词性>";
     }
     else
     {
