@@ -13,6 +13,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
 
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->adjustSize();
+
+    ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
+    ui->listDone->adjustSize();
+
+    ui->listSize->setText("/"+QString::number(this->reciter.wordlist.size()));
+    ui->listSize->adjustSize();
+
+    ui->daysLeft->setText(QString::number(QDate::currentDate().daysTo(this->reciter.log.deadline)));
+    ui->daysLeft->adjustSize();
+
+    ui->dayMax->setText("/"+QString::number(this->reciter.log.daysNum));
+    ui->dayMax->adjustSize();
+
     QPushButton *pSearchButton = ui->pushButton;
     pSearchButton->setCursor(Qt::PointingHandCursor);
 //    pSearchButton->setFixedSize(22, 22);
@@ -32,6 +47,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+
+    this->reciter.update_log();
 }
 
 void MainWindow::on_changeList_clicked()    //手动选择文件
@@ -462,3 +479,55 @@ void MainWindow::search()
     }
 }
 
+void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
+{
+    if(date < QDate::currentDate())
+        ui->dateEdit->setDate(this->reciter.log.deadline);
+    else
+    {
+        this->reciter.log.deadline = date;
+    }
+
+    this->reciter.log.change_plan(this->reciter.wordlist.size());
+
+    ui->Schedule_daysNum->setText(QString::number(this->reciter.log.daysNum));
+    ui->Schedule_daysNum->adjustSize();
+
+    ui->Schedule_newWordNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->Schedule_newWordNum->adjustSize();
+
+    ui->Schedule_reviewNum->setText(QString::number(this->reciter.log.reviewNum));
+    ui->Schedule_reviewNum->adjustSize();
+
+    ui->Schedule_totality->adjustSize();
+    ui->Schedule_planToDo->adjustSize();
+    ui->Schedule_planReview->adjustSize();
+}
+
+void MainWindow::on_Schudule_OK_clicked()
+{
+    this->reciter.log.write();
+}
+
+void MainWindow::on_Schedule_reset_clicked()
+{
+    this->reciter.log.reset_plan();
+
+    ui->Schedule_startDate->setText(this->reciter.log.startDate.toString("yyyy/M/d"));
+    ui->Schedule_startDate->adjustSize();
+
+    ui->dateEdit->setDate(this->reciter.log.deadline);
+
+    ui->Schedule_daysNum->setText(QString::number(this->reciter.log.daysNum));
+    ui->Schedule_daysNum->adjustSize();
+
+    ui->Schedule_newWordNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->Schedule_newWordNum->adjustSize();
+
+    ui->Schedule_reviewNum->setText(QString::number(this->reciter.log.reviewNum));
+    ui->Schedule_reviewNum->adjustSize();
+
+    ui->Schedule_totality->adjustSize();
+    ui->Schedule_planToDo->adjustSize();
+    ui->Schedule_planReview->adjustSize();
+}

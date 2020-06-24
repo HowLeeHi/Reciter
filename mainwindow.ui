@@ -59,7 +59,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="MainMenu">
      <widget class="QWidget" name="layoutWidget">
@@ -430,7 +430,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QWidget" name="layoutWidget">
@@ -1114,7 +1114,7 @@
            </item>
           </layout>
          </item>
-         <item row="1" column="0" alignment="Qt::AlignLeft">
+         <item row="1" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
           <widget class="QLabel" name="Schedule_planToDo">
            <property name="text">
             <string>待学新词</string>
@@ -1163,7 +1163,7 @@
            </item>
           </layout>
          </item>
-         <item row="1" column="0" alignment="Qt::AlignLeft">
+         <item row="1" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
           <widget class="QLabel" name="Schedule_planReview">
            <property name="text">
             <string>预计复习</string>
@@ -1224,7 +1224,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

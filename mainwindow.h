@@ -58,6 +58,12 @@ private slots:
     void on_Zh_En_clicked();
     void search();
 
+    void on_dateEdit_userDateChanged(const QDate &date);
+
+    void on_Schudule_OK_clicked();
+
+    void on_Schedule_reset_clicked();
+
 private:
     Ui::MainWindow *ui;
     unsigned int index;
