@@ -28,11 +28,14 @@ Reciter::Reciter()
     if(!fin) this->set_address("null.txt");
 
     this->load_wordlist();
+
+    this->update_log();
 }
 
 
 Reciter::~Reciter()
 {
+    this->log.write();
 }
 
 void Reciter::display()
@@ -280,4 +283,10 @@ void Reciter::run()
 //	this->set_address("wordlist2.txt");
 //	this->save_wordlist();
 
+}
+
+void Reciter::update_log()
+{
+    this->log.change_wordlistname(this->settings.filename_record);
+    this->log.generate_plan(this->wordlist.size());
 }

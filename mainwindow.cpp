@@ -8,9 +8,25 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->index = 0;
+    this->index = this->reciter.log.index_recordOfGoStudy;
     ui->stackedWidget->setCurrentIndex(0);
+
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
+
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->adjustSize();
+
+    ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
+    ui->listDone->adjustSize();
+
+    ui->listSize->setText("/"+QString::number(this->reciter.wordlist.size()));
+    ui->listSize->adjustSize();
+
+    ui->daysLeft->setText(QString::number(QDate::currentDate().daysTo(this->reciter.log.deadline)));
+    ui->daysLeft->adjustSize();
+
+    ui->dayMax->setText("/"+QString::number(this->reciter.log.daysNum));
+    ui->dayMax->adjustSize();
 }
 
 MainWindow::~MainWindow()
@@ -50,6 +66,8 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
     }
 
     this->reciter.load_wordlist();
+
+    this->reciter.update_log();
 }
 
 void MainWindow::on_goStudy_clicked()
@@ -60,6 +78,10 @@ void MainWindow::on_goStudy_clicked()
     ui->stackedWidget_2->setCurrentIndex(0);
 
     if(this->index>=this->reciter.wordlist.size())
+    {
+        ui->stackedWidget_2->setCurrentIndex(3);
+    }
+    else if(this->index>=this->reciter.log.index_recordOfGoStudy+this->reciter.log.newWordNum)
     {
         ui->stackedWidget_2->setCurrentIndex(2);
     }
@@ -90,8 +112,26 @@ void MainWindow::on_goStudy_clicked()
 void MainWindow::on_GoStudy_back_clicked()
 {
      ui->stackedWidget->setCurrentIndex(0);
-     this->index = 0;
+     this->reciter.log.index_recordOfGoStudy = this->index;
+     this->reciter.log.write();
      ui->stackedWidget_2->setCurrentIndex(0);
+
+     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
+
+     ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+     ui->wordsNum->adjustSize();
+
+     ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
+     ui->listDone->adjustSize();
+
+     ui->listSize->setText("/"+QString::number(this->reciter.wordlist.size()));
+     ui->listSize->adjustSize();
+
+     ui->daysLeft->setText(QString::number(QDate::currentDate().daysTo(this->reciter.log.deadline)));
+     ui->daysLeft->adjustSize();
+
+     ui->dayMax->setText("/"+QString::number(this->reciter.log.daysNum));
+     ui->dayMax->adjustSize();
 }
 
 
@@ -103,7 +143,12 @@ void MainWindow::on_GoStudy_unknow_clicked()
 
 void MainWindow::on_GoStudy_next_clicked()
 {
+    this->reciter.log.newWordNum--;
     if(++(this->index)>=this->reciter.wordlist.size())
+    {
+        ui->stackedWidget_2->setCurrentIndex(3);
+    }
+    else if((this->index)>=(this->index+this->reciter.log.newWordNum))
     {
         ui->stackedWidget_2->setCurrentIndex(2);
     }
@@ -135,7 +180,12 @@ void MainWindow::on_GoStudy_next_clicked()
 
 void MainWindow::on_GoStudy_know_clicked()
 {
+    this->reciter.log.newWordNum--;
     if(++(this->index)>=this->reciter.wordlist.size())
+    {
+        ui->stackedWidget_2->setCurrentIndex(3);
+    }
+    else if((this->index)>=(this->index+this->reciter.log.newWordNum))
     {
         ui->stackedWidget_2->setCurrentIndex(2);
     }
@@ -168,11 +218,43 @@ void MainWindow::on_GoStudy_know_clicked()
 void MainWindow::on_Schedule_back_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    this->reciter.log.read();
+
+    ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
+
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->adjustSize();
+
+    ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
+    ui->listDone->adjustSize();
+
+    ui->listSize->setText("/"+QString::number(this->reciter.wordlist.size()));
+    ui->listSize->adjustSize();
+
+    ui->daysLeft->setText(QString::number(QDate::currentDate().daysTo(this->reciter.log.deadline)));
+    ui->daysLeft->adjustSize();
+
+    ui->dayMax->setText("/"+QString::number(this->reciter.log.daysNum));
+    ui->dayMax->adjustSize();
 }
 
 void MainWindow::on_changePlan_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+
+    ui->Schedule_startDate->setText(this->reciter.log.startDate.toString("yyyy/M/d"));
+    ui->Schedule_startDate->adjustSize();
+
+    ui->dateEdit->setDate(this->reciter.log.deadline);
+
+    ui->Schedule_daysNum->setText(QString::number(this->reciter.log.daysNum));
+    ui->Schedule_daysNum->adjustSize();
+
+    ui->Schedule_newWordNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->Schedule_newWordNum->adjustSize();
+
+    ui->Schedule_reviewNum->setText(QString::number(this->reciter.log.reviewNum));
+    ui->Schedule_reviewNum->adjustSize();
 }
 
 void MainWindow::on_reviewAndTest_clicked()
@@ -185,6 +267,23 @@ void MainWindow::on_ReviewAndTest_back_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
     this->index = 0;
+
+    ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
+
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->adjustSize();
+
+    ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
+    ui->listDone->adjustSize();
+
+    ui->listSize->setText("/"+QString::number(this->reciter.wordlist.size()));
+    ui->listSize->adjustSize();
+
+    ui->daysLeft->setText(QString::number(QDate::currentDate().daysTo(this->reciter.log.deadline)));
+    ui->daysLeft->adjustSize();
+
+    ui->dayMax->setText("/"+QString::number(this->reciter.log.daysNum));
+    ui->dayMax->adjustSize();
 }
 
 
@@ -274,4 +373,57 @@ void MainWindow::on_Button_D_released()
     if(ans==3){
         this->scores++;
     }
+}
+
+void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
+{
+    if(date < QDate::currentDate())
+        ui->dateEdit->setDate(this->reciter.log.deadline);
+    else
+    {
+        this->reciter.log.deadline = date;
+    }
+
+    this->reciter.log.change_plan(this->reciter.wordlist.size());
+
+    ui->Schedule_daysNum->setText(QString::number(this->reciter.log.daysNum));
+    ui->Schedule_daysNum->adjustSize();
+
+    ui->Schedule_newWordNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->Schedule_newWordNum->adjustSize();
+
+    ui->Schedule_reviewNum->setText(QString::number(this->reciter.log.reviewNum));
+    ui->Schedule_reviewNum->adjustSize();
+
+    ui->Schedule_totality->adjustSize();
+    ui->Schedule_planToDo->adjustSize();
+    ui->Schedule_planReview->adjustSize();
+}
+
+void MainWindow::on_Schudule_OK_clicked()
+{
+    this->reciter.log.write();
+}
+
+void MainWindow::on_Schedule_reset_clicked()
+{
+    this->reciter.log.reset_plan();
+
+    ui->Schedule_startDate->setText(this->reciter.log.startDate.toString("yyyy/M/d"));
+    ui->Schedule_startDate->adjustSize();
+
+    ui->dateEdit->setDate(this->reciter.log.deadline);
+
+    ui->Schedule_daysNum->setText(QString::number(this->reciter.log.daysNum));
+    ui->Schedule_daysNum->adjustSize();
+
+    ui->Schedule_newWordNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->Schedule_newWordNum->adjustSize();
+
+    ui->Schedule_reviewNum->setText(QString::number(this->reciter.log.reviewNum));
+    ui->Schedule_reviewNum->adjustSize();
+
+    ui->Schedule_totality->adjustSize();
+    ui->Schedule_planToDo->adjustSize();
+    ui->Schedule_planReview->adjustSize();
 }

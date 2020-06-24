@@ -5,6 +5,7 @@
 #include <vector>
 #include "worditem.h"
 #include "settings.h"
+#include "log.h"
 using namespace std;
 
 
@@ -14,6 +15,7 @@ public:
     Settings settings;                      //存放设置信息
     string wordlist_address;		        //单词表文件按目标路径
     vector<WordItem> wordlist;              //存放单词，向量内的元素为WordItem类对象
+    Log log;                                //用户日志
 
     Reciter();
     ~Reciter();
@@ -36,6 +38,7 @@ public:
     int test_answer_ENG(unsigned int i, unsigned int array[4]);			//选择英语解释，返回正误
     void search_Word();                     //模拟查找单词
     bool exam(int testNum, unsigned int *array);                            //模拟考试
+    void update_log();
 };
 
 

@@ -5,6 +5,7 @@
 #include "reciter.h"
 #include <QTextCodec>
 #include <QButtonGroup>
+#include <QDate>
 namespace Ui {
 class MainWindow;
 }
@@ -50,9 +51,15 @@ private slots:
 
     void on_Button_D_released();
 
+    void on_dateEdit_userDateChanged(const QDate &date);
+
+    void on_Schudule_OK_clicked();
+
+    void on_Schedule_reset_clicked();
+
 private:
     Ui::MainWindow *ui;
-    unsigned int index;
+    unsigned int index;     //下一个需学习的单词下标
     //----------测验用--------------
     int scores;
     unsigned int index_options[4];
