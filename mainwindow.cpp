@@ -179,8 +179,15 @@ void MainWindow::on_reviewAndTest_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
     ui->stackedWidget_3->setCurrentIndex(0);
-    ui->test_title->setText("本考试共有10个题，全部为选择题，每题1分。选择你认为正确的答案，点击确认开始考试。");
-
+    QString text = "本考试共有";
+    if(testnum >= 10){
+        text.append(testnum/10 +'0');
+        text.append(testnum%10 + '0');
+    } else {
+        text.append(testnum +'0');
+    }
+    text.append("个题，全部为选择题，每题1分。选择你认为正确的答案，点击确认开始考试。");
+    ui->test_title->setText(text);
     ui->test_title->setWordWrap(true);
     ui->test_title->setAlignment(Qt::AlignTop);
 }
@@ -200,7 +207,15 @@ void MainWindow::on_test_confirm_button_released()
         ui->test_title->adjustSize();
         return;
     }else{
-        ui->test_title->setText("本考试共有10个题，全部为选择题，每题1分。选择你认为正确的答案，点击确认开始考试。");
+        QString text = "本考试共有";
+        if(testnum >= 10){
+            text.append(testnum/10 +'0');
+            text.append(testnum%10 + '0');
+        } else {
+            text.append(testnum +'0');
+        }
+        text.append("个题，全部为选择题，每题1分。选择你认为正确的答案，点击确认开始考试。");
+        ui->test_title->setText(text);
         ui->test_title->setWordWrap(true);
         ui->test_title->setAlignment(Qt::AlignTop);
     }
@@ -213,11 +228,24 @@ void MainWindow::on_test_confirm_button_released()
     //显示第一题题面
     this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
     QTextCodec *codec=QTextCodec::codecForName("GB2312");
-    ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->index_testNum[n]].getEnglish()));
-    ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
-    ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
-    ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
-    ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
+    if(exam_flag == true){
+        ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->index_testNum[n]].getEnglish()));
+        ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
+        ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
+        ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
+        ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
+        //调整大小
+//        ui->question->setWordWrap(true);
+//        ui->question->setAlignment(Qt::AlignTop);
+    } else {
+        ui->question->setText(codec->toUnicode(this->reciter.wordlist[this->index_testNum[n]].getChinese().c_str()));
+        ui->Button_A->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[0]].getEnglish()));
+        ui->Button_B->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[1]].getEnglish()));
+        ui->Button_C->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[2]].getEnglish()));
+        ui->Button_D->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[3]].getEnglish()));
+        ui->question->setWordWrap(true);
+        ui->question->setAlignment(Qt::AlignTop);
+    }
     n++;
 }
 
@@ -228,37 +256,51 @@ void MainWindow::on_test_next_released()
         //更新题面.英译汉
         this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
         QTextCodec *codec=QTextCodec::codecForName("GB2312");
-        ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->index_testNum[n]].getEnglish()));
-        ui->question->adjustSize();
-        ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
-        ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
-        ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
-        ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
-        ui->Button_A->adjustSize();
-        ui->Button_B->adjustSize();
-        ui->Button_C->adjustSize();
-        ui->Button_D->adjustSize();
+        if(exam_flag == true){
+            ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->index_testNum[n]].getEnglish()));
+            ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
+            ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
+            ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
+            ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
+            ui->question->setWordWrap(true);
+            ui->question->setAlignment(Qt::AlignTop);
+        } else {
+            ui->question->setText(codec->toUnicode(this->reciter.wordlist[this->index_testNum[n]].getChinese().c_str()));
+            ui->Button_A->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[0]].getEnglish()));
+            ui->Button_B->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[1]].getEnglish()));
+            ui->Button_C->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[2]].getEnglish()));
+            ui->Button_D->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[3]].getEnglish()));
+//            ui->question->setWordWrap(true);
+//            ui->question->setAlignment(Qt::AlignTop);
+        }
         n++;
     } else {
+        //考试结果
         ui->stackedWidget_3->setCurrentIndex(2);
         if(scores < testnum * 0.6){
-            ui->grade->setText("您只得了              分><, 尚需努力！");
-            ui->grade1->setNum(scores);
-           }
-           else if((scores >= testnum * 0.6) && (scores < testnum * 0.85)){
-            ui->grade->setText("您得了              分， 及格颇有余，优秀尚不足，加油！");
-            ui->grade1->setNum(scores);
-           }
-           else if((scores >= testnum * 0.85) && (scores < testnum)){
-            ui->grade->setText("您得了              分， 非常优秀，加油！");
-            ui->grade1->setNum(scores);
-           }
-           else if(scores == testnum){
+            QString text = "您只得了 ";
+            text.append(scores+'0');
+            text.append(" 分><, 尚需努力！");
+            ui->grade->setText(text);
+        } else if((scores >= testnum * 0.6) && (scores < testnum * 0.85)){
+            QString text = "您得了 ";
+            text.append(scores+'0');
+            text.append(" 分， 及格颇有余，优秀尚不足，加油！");
+            ui->grade->setText(text);
+        } else if((scores >= testnum * 0.85) && (scores < testnum)){
+            QString text = "您得了 ";
+            text.append(scores+'0');
+            text.append(" 分， 非常优秀，加油！");
+            ui->grade->setText(text);
+        } else if(scores == testnum){
             ui->grade->setText("您得了满分！");
-           }
+        }
+        ui->grade->setWordWrap(true);
+        ui->grade->setAlignment(Qt::AlignTop);
     }
 }
 
+//定义分数变化
 void MainWindow::on_Button_A_released()
 {
     if(ans==0){
@@ -282,4 +324,15 @@ void MainWindow::on_Button_D_released()
     if(ans==3){
         this->scores++;
     }
+}
+
+//定义考试类型
+void MainWindow::on_En_Zh_clicked()
+{
+    this->exam_flag = true;
+}
+
+void MainWindow::on_Zh_En_clicked()
+{
+    this->exam_flag = false;
 }
