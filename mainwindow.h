@@ -68,13 +68,13 @@ private:
     Ui::MainWindow *ui;
     unsigned int index;
     //----------测验用--------------
-    int scores;                         //分数
-    unsigned int index_options[4];      //选项对应单词表下标
-    int ans;                            //正确选项
-    int testnum = 10;                   //题目数量 (0-99)
-    bool exam_flag = true;              //考试类型 true：英译汉  false：汉译英 (默认为true)
-    int n;                              //考试进度 （0 - testnum）
-    unsigned int index_testNum[10];     //题目对应单词表下标
+    int scores;                                     //分数
+    unsigned int index_options[4];                  //选项对应单词表下标
+    int ans;                                        //正确选项
+    int testnum = this->reciter.log.reviewNum;      //题目数量 (0-99)
+    bool exam_flag = true;                          //考试类型 true：英译汉  false：汉译英 (默认为true)
+    int n;                                          //考试进度 （0 - testnum）
+    unsigned int index_testNum[10];                 //题目对应单词表下标
 
 };
 

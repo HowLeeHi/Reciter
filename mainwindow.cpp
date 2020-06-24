@@ -28,20 +28,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dayMax->setText("/"+QString::number(this->reciter.log.daysNum));
     ui->dayMax->adjustSize();
 
+    //定义搜索按钮
     QPushButton *pSearchButton = ui->pushButton;
     pSearchButton->setCursor(Qt::PointingHandCursor);
-//    pSearchButton->setFixedSize(22, 22);
     pSearchButton->setToolTip(QStringLiteral("搜索"));
     QMargins margins = ui->search_line->textMargins();
+    //定义搜索框（在ui下已声明）
     ui->search_line->setTextMargins(margins.left(), margins.top(), pSearchButton->width(), margins.bottom());
     ui->search_line->setPlaceholderText(QStringLiteral("请输入搜索内容"));
-
     QHBoxLayout *pSearchLayout = new QHBoxLayout();
     pSearchLayout->addStretch();
     pSearchLayout->addWidget(pSearchButton);
     pSearchLayout->setSpacing(0);
     pSearchLayout->setContentsMargins(0, 0, 0, 0);
     ui->search_line->setLayout(pSearchLayout);
+    //链接槽函数实现搜索功能
     connect(pSearchButton, SIGNAL(clicked(bool)), this, SLOT(search()));
 }
 MainWindow::~MainWindow()
@@ -452,6 +453,8 @@ void MainWindow::on_Zh_En_clicked()
 {
     this->exam_flag = false;
 }
+
+//搜索按钮槽函数
 void MainWindow::search()
 {
     QString strText = ui->search_line->text();
@@ -464,7 +467,8 @@ void MainWindow::search()
             QString re = QString::fromStdString(this->reciter.wordlist[pos].getEnglish());
             QString re1 = QString::fromStdString(this->reciter.wordlist[pos].part_of_speech);
             QString re2 = codec->toUnicode(this->reciter.wordlist[pos].meaning.c_str());
-            QString re3 = QString::fromStdString(this->reciter.wordlist[pos].example);
+//           QString re3 = QString::fromStdString(this->reciter.wordlist[pos].example);
+            QString re3 = QString(QString::fromLocal8Bit(this->reciter.wordlist[pos].example.c_str()));
             QString re4 = codec->toUnicode(this->reciter.wordlist[pos].example_meaning.c_str());
             QMessageBox::information(this, QStringLiteral("搜索"), QStringLiteral("搜索结果为：\n"
                          "拼写：%1\n"
