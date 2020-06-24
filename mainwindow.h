@@ -7,6 +7,7 @@
 #include "reciter.h"
 #include <QTextCodec>
 #include <QButtonGroup>
+#include <QMessageBox>
 namespace Ui {
 class MainWindow;
 }
@@ -55,6 +56,7 @@ private slots:
     void on_En_Zh_clicked();
 
     void on_Zh_En_clicked();
+    void search();
 
 private:
     Ui::MainWindow *ui;

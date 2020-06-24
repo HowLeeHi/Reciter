@@ -59,7 +59,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="MainMenu">
      <widget class="QWidget" name="layoutWidget">
@@ -382,6 +382,29 @@
        </item>
       </layout>
      </widget>
+     <widget class="QLineEdit" name="search_line">
+      <property name="geometry">
+       <rect>
+        <x>82</x>
+        <y>70</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>70</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>搜索</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="GoStudy">
      <widget class="QPushButton" name="GoStudy_back">
@@ -407,7 +430,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QWidget" name="layoutWidget">
@@ -673,7 +696,7 @@
        <number>1</number>
       </property>
       <widget class="QWidget" name="page_4">
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -747,7 +770,7 @@
        </widget>
       </widget>
       <widget class="QWidget" name="page_5">
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>20</x>

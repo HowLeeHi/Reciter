@@ -11,8 +11,23 @@ MainWindow::MainWindow(QWidget *parent) :
     this->index = 0;
     ui->stackedWidget->setCurrentIndex(0);
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
-}
 
+    QPushButton *pSearchButton = ui->pushButton;
+    pSearchButton->setCursor(Qt::PointingHandCursor);
+//    pSearchButton->setFixedSize(22, 22);
+    pSearchButton->setToolTip(QStringLiteral("搜索"));
+    QMargins margins = ui->search_line->textMargins();
+    ui->search_line->setTextMargins(margins.left(), margins.top(), pSearchButton->width(), margins.bottom());
+    ui->search_line->setPlaceholderText(QStringLiteral("请输入搜索内容"));
+
+    QHBoxLayout *pSearchLayout = new QHBoxLayout();
+    pSearchLayout->addStretch();
+    pSearchLayout->addWidget(pSearchButton);
+    pSearchLayout->setSpacing(0);
+    pSearchLayout->setContentsMargins(0, 0, 0, 0);
+    ui->search_line->setLayout(pSearchLayout);
+    connect(pSearchButton, SIGNAL(clicked(bool)), this, SLOT(search()));
+}
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -336,3 +351,30 @@ void MainWindow::on_Zh_En_clicked()
 {
     this->exam_flag = false;
 }
+void MainWindow::search()
+{
+    QString strText = ui->search_line->text();
+    if (!strText.isEmpty())
+    {
+        QTextCodec *codec=QTextCodec::codecForName("GB2312");
+        string Text = strText.toStdString();
+        int pos = this->reciter.search_word(Text);
+        if(pos > -1){
+            QString re = QString::fromStdString(this->reciter.wordlist[pos].getEnglish());
+            QString re1 = QString::fromStdString(this->reciter.wordlist[pos].part_of_speech);
+            QString re2 = codec->toUnicode(this->reciter.wordlist[pos].meaning.c_str());
+            QString re3 = QString::fromStdString(this->reciter.wordlist[pos].example);
+            QString re4 = codec->toUnicode(this->reciter.wordlist[pos].example_meaning.c_str());
+            QMessageBox::information(this, QStringLiteral("搜索"), QStringLiteral("搜索结果为：\n"
+                         "拼写：%1\n"
+                         "词性：%2\n"
+                         "释义：%3\n"
+                         "例句：%4\n"
+                         "例句翻译：%5")
+                                     .arg(re).arg(re1).arg(re2).arg(re3).arg(re4));
+        } else {
+            QMessageBox::information(this, QStringLiteral("搜索"), QStringLiteral("搜索结果为：\n单词表内不存在该单词"));
+        }
+    }
+}
+
