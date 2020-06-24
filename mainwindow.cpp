@@ -31,11 +31,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //定义搜索按钮
     QPushButton *pSearchButton = ui->pushButton;
     pSearchButton->setCursor(Qt::PointingHandCursor);
-    pSearchButton->setToolTip(QStringLiteral("搜索"));
+//    pSearchButton->setToolTip(QString::fromStdString("搜索"));
     QMargins margins = ui->search_line->textMargins();
     //定义搜索框（在ui下已声明）
     ui->search_line->setTextMargins(margins.left(), margins.top(), pSearchButton->width(), margins.bottom());
-    ui->search_line->setPlaceholderText(QStringLiteral("请输入搜索内容"));
+    ui->search_line->setPlaceholderText(QString::fromStdString("请输入搜索内容"));
     QHBoxLayout *pSearchLayout = new QHBoxLayout();
     pSearchLayout->addStretch();
     pSearchLayout->addWidget(pSearchButton);
@@ -464,13 +464,12 @@ void MainWindow::search()
         string Text = strText.toStdString();
         int pos = this->reciter.search_word(Text);
         if(pos > -1){
-            QString re = QString::fromStdString(this->reciter.wordlist[pos].getEnglish());
-            QString re1 = QString::fromStdString(this->reciter.wordlist[pos].part_of_speech);
-            QString re2 = codec->toUnicode(this->reciter.wordlist[pos].meaning.c_str());
-//           QString re3 = QString::fromStdString(this->reciter.wordlist[pos].example);
-            QString re3 = QString(QString::fromLocal8Bit(this->reciter.wordlist[pos].example.c_str()));
-            QString re4 = codec->toUnicode(this->reciter.wordlist[pos].example_meaning.c_str());
-            QMessageBox::information(this, QStringLiteral("搜索"), QStringLiteral("搜索结果为：\n"
+            QString re = QString::fromStdString(this->reciter.wordlist[unsigned(pos)].getEnglish());
+            QString re1 = QString::fromStdString(this->reciter.wordlist[unsigned(pos)].part_of_speech);
+            QString re2 = codec->toUnicode(this->reciter.wordlist[unsigned(pos)].meaning.c_str());
+            QString re3 = QString(QString::fromLocal8Bit(this->reciter.wordlist[unsigned(pos)].example.c_str()));
+            QString re4 = codec->toUnicode(this->reciter.wordlist[unsigned(pos)].example_meaning.c_str());
+            QMessageBox::information(this, QString::fromStdString("搜索"), QString::fromStdString("搜索结果为：\n"
                          "拼写：%1\n"
                          "词性：%2\n"
                          "释义：%3\n"
@@ -478,7 +477,7 @@ void MainWindow::search()
                          "例句翻译：%5")
                                      .arg(re).arg(re1).arg(re2).arg(re3).arg(re4));
         } else {
-            QMessageBox::information(this, QStringLiteral("搜索"), QStringLiteral("搜索结果为：\n单词表内不存在该单词"));
+            QMessageBox::information(this, QString::fromStdString("搜索"), QString::fromStdString("搜索结果为：\n单词表内不存在该单词"));
         }
     }
 }

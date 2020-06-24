@@ -70,7 +70,7 @@ void Log::generate_plan(unsigned int wordlistSize) //检查今天是否已经计
         }
         else
         {
-            this->newWordNum = wordlistSize/QDate::currentDate().daysTo(this->deadline);
+            this->newWordNum = (wordlistSize-this->index_recordOfGoStudy)/QDate::currentDate().daysTo(this->deadline);
             this->reviewNum = 10;
 
             //天数太多导致每日学词数为0，这是不允许的
@@ -109,5 +109,5 @@ void Log::reset_plan()
     this->deadline = QDate::currentDate();
     this->daysNum = startDate.daysTo(deadline);
     this->lastPlan = QDate::fromString("2000/1/1","yyyy/M/d");
-    this->generate_plan(0);
+    this->change_plan(0);
 }
