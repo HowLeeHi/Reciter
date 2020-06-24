@@ -514,7 +514,7 @@ void MainWindow::on_Schudule_OK_clicked()
 
 void MainWindow::on_Schedule_reset_clicked()
 {
-    this->reciter.log.reset_plan();
+    this->reciter.log.reset_plan(this->reciter.wordlist.size());
 
     ui->Schedule_startDate->setText(this->reciter.log.startDate.toString("yyyy/M/d"));
     ui->Schedule_startDate->adjustSize();

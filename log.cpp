@@ -102,12 +102,12 @@ void Log::change_plan(unsigned int wordlistSize) //如果用户手动修改了�
     this->daysNum = startDate.daysTo(deadline);
 }
 
-void Log::reset_plan()
+void Log::reset_plan(unsigned int wordlistSize)
 {
     this->index_recordOfGoStudy = 0;
     this->startDate = QDate::currentDate();
     this->deadline = QDate::currentDate();
     this->daysNum = startDate.daysTo(deadline);
     this->lastPlan = QDate::fromString("2000/1/1","yyyy/M/d");
-    this->change_plan(0);
+    this->generate_plan(wordlistSize);
 }

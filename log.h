@@ -26,7 +26,7 @@ public:
     void change_wordlistname(string newwordlistname);
     void generate_plan(unsigned wordlistSize);
     void change_plan(unsigned wordlistSize);
-    void reset_plan();
+    void reset_plan(unsigned int wordlistSize);
 };
 
 #endif // LOG_H
