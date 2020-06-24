@@ -670,7 +670,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="">
@@ -1032,14 +1032,65 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>81</x>
         <y>270</y>
-        <width>240</width>
+        <width>242</width>
         <height>125</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="3" column="0">
+       <item row="0" column="1" colspan="2">
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item alignment="Qt::AlignRight">
+          <widget class="QLabel" name="Schedule_totality">
+           <property name="text">
+            <string>共计学习</string>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="Schedule_daysNum">
+           <property name="font">
+            <font>
+             <family>Arial Black</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="Schedule_day">
+           <property name="text">
+            <string>天</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="4" column="1" colspan="2">
+        <spacer name="horizontalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>98</width>
+           <height>50</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0" rowspan="2" colspan="4">
+        <widget class="Line" name="line_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="0">
           <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -1074,34 +1125,7 @@
          </item>
         </layout>
        </item>
-       <item row="3" column="1">
-        <spacer name="horizontalSpacer_11">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="Line" name="line_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1" alignment="Qt::AlignHCenter">
-        <widget class="QLabel" name="Schedule_everydayPlan">
-         <property name="text">
-          <string>每天目标</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
+       <item row="4" column="3">
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
           <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -1137,36 +1161,12 @@
          </item>
         </layout>
        </item>
-       <item row="0" column="0" colspan="3">
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item alignment="Qt::AlignRight">
-          <widget class="QLabel" name="Schedule_totality">
-           <property name="text">
-            <string>共计学习</string>
-           </property>
-          </widget>
-         </item>
-         <item alignment="Qt::AlignHCenter">
-          <widget class="QLabel" name="Schedule_daysNum">
-           <property name="font">
-            <font>
-             <family>Arial Black</family>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="Schedule_day">
-           <property name="text">
-            <string>天</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+       <item row="3" column="0" colspan="4" alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="Schedule_everydayPlan">
+         <property name="text">
+          <string>每天目标</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
