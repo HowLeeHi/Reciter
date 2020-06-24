@@ -59,7 +59,7 @@
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainMenu">
      <widget class="QWidget" name="layoutWidget">
@@ -670,7 +670,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QLabel" name="test_title">
@@ -683,8 +683,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>本考试共有10个题，全部为选择题，每题1分。
-选择你认为正确的答案，点击确认开始考试。</string>
+         <string>exam</string>
         </property>
         <property name="textFormat">
          <enum>Qt::AutoText</enum>
@@ -869,7 +868,7 @@
        <string>确定</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>21</x>
@@ -945,7 +944,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -1095,7 +1094,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

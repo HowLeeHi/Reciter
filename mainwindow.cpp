@@ -179,6 +179,10 @@ void MainWindow::on_reviewAndTest_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
     ui->stackedWidget_3->setCurrentIndex(0);
+    ui->test_title->setText("本考试共有10个题，全部为选择题，每题1分。选择你认为正确的答案，点击确认开始考试。");
+
+    ui->test_title->setWordWrap(true);
+    ui->test_title->setAlignment(Qt::AlignTop);
 }
 
 void MainWindow::on_ReviewAndTest_back_clicked()
@@ -195,6 +199,10 @@ void MainWindow::on_test_confirm_button_released()
         ui->test_title->setText("单词表为空，请重新添加");
         ui->test_title->adjustSize();
         return;
+    }else{
+        ui->test_title->setText("本考试共有10个题，全部为选择题，每题1分。选择你认为正确的答案，点击确认开始考试。");
+        ui->test_title->setWordWrap(true);
+        ui->test_title->setAlignment(Qt::AlignTop);
     }
     //跳转到题目界面，初始化分数和题目
     ui->test_title->adjustSize();
