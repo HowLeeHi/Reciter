@@ -63,7 +63,7 @@ void Log::generate_plan(unsigned int wordlistSize) //检查今天是否已经计
 {
     if(this->lastPlan != QDate::currentDate())
     {
-        if(this->deadline == QDate::currentDate())
+        if(this->deadline <= QDate::currentDate())
         {
             this->newWordNum = wordlistSize-this->index_recordOfGoStudy;
             this->reviewNum = 10;
@@ -83,7 +83,7 @@ void Log::generate_plan(unsigned int wordlistSize) //检查今天是否已经计
 
 void Log::change_plan(unsigned int wordlistSize) //如果用户手动修改了计划，使用这个更新
 {
-    if(this->deadline == QDate::currentDate())
+    if(this->deadline <= QDate::currentDate())
     {
         this->newWordNum = wordlistSize - this->index_recordOfGoStudy;
         this->reviewNum = 10;
