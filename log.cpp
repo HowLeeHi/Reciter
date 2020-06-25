@@ -6,6 +6,11 @@ Log::Log(string wordlistname)
     this->read();
 }
 
+Log::~Log()
+{
+    this->write();
+}
+
 void Log::read()
 {
     ifstream fin(QCoreApplication::applicationDirPath().toStdString()+"/log/log_"+this->wordlistname+".txt");

@@ -16,7 +16,7 @@ void Settings::read()
     else    //如果缺少必要的文件系统，就自动创建
     {
         this->filename_record = "null";
-        this->filepath_record = "./";
+        this->filepath_record = QCoreApplication::applicationDirPath().toStdString()+"/settings";
         QDir dir;
         if(!dir.exists(QCoreApplication::applicationDirPath()+"/settings"))
             dir.mkdir(QCoreApplication::applicationDirPath()+"/settings");

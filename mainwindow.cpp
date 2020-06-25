@@ -70,7 +70,7 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
         ui->wordListName->setText("null");
 
         this->reciter.settings.filename_record = "null";
-        this->reciter.settings.filepath_record = "./";
+        this->reciter.settings.filepath_record = QCoreApplication::applicationDirPath().toStdString()+"/wordlist";
         this->reciter.settings.write();
 
         this->reciter.log.change_wordlistname(this->reciter.settings.filename_record);
@@ -213,6 +213,7 @@ void MainWindow::on_GoStudy_next_clicked()
         ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.indexOfGoStudy].example_meaning.c_str()));
         ui->GoStudy_exampleMeaning->adjustSize();
     }
+    this->reciter.log.index_recordOfGoStudy = this->reciter.indexOfGoStudy;
 }
 
 void MainWindow::on_GoStudy_know_clicked()
@@ -250,6 +251,7 @@ void MainWindow::on_GoStudy_know_clicked()
         ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.indexOfGoStudy].example_meaning.c_str()));
         ui->GoStudy_exampleMeaning->adjustSize();
     }
+    this->reciter.log.index_recordOfGoStudy = this->reciter.indexOfGoStudy;
 }
 
 void MainWindow::on_Schedule_back_clicked()

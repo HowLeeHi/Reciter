@@ -23,6 +23,7 @@ public:
     unsigned int reviewNum;
 
     Log(string wordlistname = "null");
+    ~Log();
     void read();
     void write();
     void change_wordlistname(string newwordlistname);
