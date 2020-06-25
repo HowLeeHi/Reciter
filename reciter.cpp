@@ -32,9 +32,7 @@ Reciter::Reciter()
 
     this->load_wordlist();
 
-    this->update_log();
-
-    this->indexOfGoStudy = this->log.index_recordOfGoStudy;
+    this->change_log();
 }
 
 
@@ -289,7 +287,7 @@ void Reciter::run()
 
 }
 
-void Reciter::update_log()
+void Reciter::change_log()
 {
     this->log.change_wordlistname(this->settings.filename_record);
     this->log.generate_plan(this->wordlist.size());
@@ -298,5 +296,4 @@ void Reciter::update_log()
 void Reciter::reset_plan()
 {
     this->log.reset_plan(this->wordlist.size());
-    this->indexOfGoStudy = this->log.index_recordOfGoStudy;
 }

@@ -8,7 +8,6 @@ Log::Log(string wordlistname)
 
 Log::~Log()
 {
-    this->write();
 }
 
 void Log::read()
@@ -28,6 +27,7 @@ void Log::read()
         this->lastPlan = QDate::fromString(QString::fromStdString(buff),"yyyy/M/d");
         fin >> this->newWordNum;
         fin >> this->reviewNum;
+        fin >> this->doneWordNum;
     }
     else    //如果缺少必要的文件系统，就自动创建
     {
@@ -56,7 +56,8 @@ void Log::write()
          << this->daysNum << endl
          << this->lastPlan.toString("yyyy/M/d").toStdString() << endl
          << this->newWordNum << endl
-         << this->reviewNum << endl;
+         << this->reviewNum << endl
+         << this->doneWordNum << endl;
 
 }
 
@@ -75,11 +76,13 @@ void Log::generate_plan(unsigned int wordlistSize) //检查今天是否已经计
         {
             this->newWordNum = wordlistSize-this->index_recordOfGoStudy;
             this->reviewNum = 10;
+            this->doneWordNum = 0;
         }
         else
         {
             this->newWordNum = (wordlistSize-this->index_recordOfGoStudy)/QDate::currentDate().daysTo(this->deadline);
             this->reviewNum = 10;
+            this->doneWordNum = 0;
 
             //天数太多导致每日学词数为0，这是不允许的
             if((this->newWordNum==0)&&(((wordlistSize - this->index_recordOfGoStudy)%QDate::currentDate().daysTo(this->deadline))!=0))
@@ -95,11 +98,13 @@ void Log::change_plan(unsigned int wordlistSize) //如果用户手动修改了�
     {
         this->newWordNum = wordlistSize - this->index_recordOfGoStudy;
         this->reviewNum = 10;
+        this->doneWordNum = 0;
     }
     else
     {
         this->newWordNum = (wordlistSize - this->index_recordOfGoStudy)/QDate::currentDate().daysTo(this->deadline);
         this->reviewNum = 10;
+        this->doneWordNum = 0;
 
         //天数太多导致每日学词数为0，这是不允许的
         if((this->newWordNum==0)&&(((wordlistSize - this->index_recordOfGoStudy)%QDate::currentDate().daysTo(this->deadline))!=0))

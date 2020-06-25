@@ -21,6 +21,7 @@ public:
     QDate lastPlan;
     unsigned int newWordNum;
     unsigned int reviewNum;
+    unsigned int doneWordNum;
 
     Log(string wordlistname = "null");
     ~Log();

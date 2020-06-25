@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
 
-    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum-this->reciter.log.doneWordNum));
     ui->wordsNum->adjustSize();
 
     ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
@@ -48,8 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-
-    this->reciter.update_log();
 }
 
 void MainWindow::on_changeList_clicked()    //手动选择文件
@@ -73,7 +71,6 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
         this->reciter.settings.filepath_record = QCoreApplication::applicationDirPath().toStdString()+"/wordlist";
         this->reciter.settings.write();
 
-        this->reciter.log.change_wordlistname(this->reciter.settings.filename_record);
     }
     else
     {
@@ -84,12 +81,11 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
         this->reciter.settings.filepath_record = file_path.toStdString();
         this->reciter.settings.write();
 
-        this->reciter.log.change_wordlistname(this->reciter.settings.filename_record);
     }
 
     this->reciter.load_wordlist();
 
-    this->reciter.update_log();
+    this->reciter.change_log();
 
     ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
     ui->wordsNum->adjustSize();
@@ -114,32 +110,32 @@ void MainWindow::on_goStudy_clicked()
     ui->stackedWidget->setCurrentIndex(1);
     ui->stackedWidget_2->setCurrentIndex(0);
 
-    if(this->reciter.indexOfGoStudy>=this->reciter.wordlist.size())
+    if(this->reciter.log.index_recordOfGoStudy>=this->reciter.wordlist.size())
     {
         ui->stackedWidget_2->setCurrentIndex(3);
     }
-    else if(this->reciter.indexOfGoStudy>=this->reciter.log.index_recordOfGoStudy+this->reciter.log.newWordNum)
+    else if(this->reciter.log.doneWordNum >= this->reciter.log.newWordNum)
     {
         ui->stackedWidget_2->setCurrentIndex(2);
     }
     else
     {
-        ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].word));
+        ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].word));
         ui->GoStudy_newWord->adjustSize();
 
-        ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].word));
+        ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].word));
         ui->GoStudy_word->adjustSize();
 
-        ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].part_of_speech));
+        ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].part_of_speech));
         ui->GoStudy_partOfSpeech->adjustSize();
 
-        ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.indexOfGoStudy].meaning.c_str()));
+        ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].meaning.c_str()));
         ui->GoStudy_meaning->adjustSize();
 
-        ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].example));
+        ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].example));
         ui->GoStudy_example->adjustSize();
 
-        ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.indexOfGoStudy].example_meaning.c_str()));
+        ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].example_meaning.c_str()));
         ui->GoStudy_exampleMeaning->adjustSize();
     }
 }
@@ -148,14 +144,15 @@ void MainWindow::on_goStudy_clicked()
 
 void MainWindow::on_GoStudy_back_clicked()
 {
+    this->reciter.log.write();
+
      ui->stackedWidget->setCurrentIndex(0);
-     this->reciter.log.index_recordOfGoStudy = this->reciter.indexOfGoStudy;
-     this->reciter.log.write();
+
      ui->stackedWidget_2->setCurrentIndex(0);
 
      ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
 
-     ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+     ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum-this->reciter.log.doneWordNum));
      ui->wordsNum->adjustSize();
 
      ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
@@ -180,12 +177,12 @@ void MainWindow::on_GoStudy_unknow_clicked()
 
 void MainWindow::on_GoStudy_next_clicked()
 {
-    this->reciter.log.newWordNum--;
-    if(++(this->reciter.indexOfGoStudy)>=this->reciter.wordlist.size())
+    this->reciter.log.doneWordNum++;
+    if(++(this->reciter.log.index_recordOfGoStudy)>=this->reciter.wordlist.size())
     {
         ui->stackedWidget_2->setCurrentIndex(3);
     }
-    else if((this->reciter.indexOfGoStudy)>=(this->reciter.indexOfGoStudy+this->reciter.log.newWordNum))
+    else if(this->reciter.log.doneWordNum>=this->reciter.log.newWordNum)
     {
         ui->stackedWidget_2->setCurrentIndex(2);
     }
@@ -195,35 +192,34 @@ void MainWindow::on_GoStudy_next_clicked()
 
         ui->stackedWidget_2->setCurrentIndex(0);
 
-        ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].word));
+        ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].word));
         ui->GoStudy_newWord->adjustSize();
 
-        ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].word));
+        ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].word));
         ui->GoStudy_word->adjustSize();
 
-        ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].part_of_speech));
+        ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].part_of_speech));
         ui->GoStudy_partOfSpeech->adjustSize();
 
-        ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.indexOfGoStudy].meaning.c_str()));
+        ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].meaning.c_str()));
         ui->GoStudy_meaning->adjustSize();
 
-        ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].example));
+        ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].example));
         ui->GoStudy_example->adjustSize();
 
-        ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.indexOfGoStudy].example_meaning.c_str()));
+        ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].example_meaning.c_str()));
         ui->GoStudy_exampleMeaning->adjustSize();
     }
-    this->reciter.log.index_recordOfGoStudy = this->reciter.indexOfGoStudy;
 }
 
 void MainWindow::on_GoStudy_know_clicked()
 {
-    this->reciter.log.newWordNum--;
-    if(++(this->reciter.indexOfGoStudy)>=this->reciter.wordlist.size())
+    this->reciter.log.doneWordNum++;
+    if(++(this->reciter.log.index_recordOfGoStudy)>=this->reciter.wordlist.size())
     {
         ui->stackedWidget_2->setCurrentIndex(3);
     }
-    else if((this->reciter.indexOfGoStudy)>=(this->reciter.indexOfGoStudy+this->reciter.log.newWordNum))
+    else if(this->reciter.log.doneWordNum>=this->reciter.log.newWordNum)
     {
         ui->stackedWidget_2->setCurrentIndex(2);
     }
@@ -233,25 +229,24 @@ void MainWindow::on_GoStudy_know_clicked()
 
         ui->stackedWidget_2->setCurrentIndex(0);
 
-        ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].word));
+        ui->GoStudy_newWord->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].word));
         ui->GoStudy_newWord->adjustSize();
 
-        ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].word));
+        ui->GoStudy_word->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].word));
         ui->GoStudy_word->adjustSize();
 
-        ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].part_of_speech));
+        ui->GoStudy_partOfSpeech->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].part_of_speech));
         ui->GoStudy_partOfSpeech->adjustSize();
 
-        ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.indexOfGoStudy].meaning.c_str()));
+        ui->GoStudy_meaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].meaning.c_str()));
         ui->GoStudy_meaning->adjustSize();
 
-        ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.indexOfGoStudy].example));
+        ui->GoStudy_example->setText(QString::fromStdString(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].example));
         ui->GoStudy_example->adjustSize();
 
-        ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.indexOfGoStudy].example_meaning.c_str()));
+        ui->GoStudy_exampleMeaning->setText(codec->toUnicode(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy].example_meaning.c_str()));
         ui->GoStudy_exampleMeaning->adjustSize();
     }
-    this->reciter.log.index_recordOfGoStudy = this->reciter.indexOfGoStudy;
 }
 
 void MainWindow::on_Schedule_back_clicked()
@@ -261,7 +256,7 @@ void MainWindow::on_Schedule_back_clicked()
 
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
 
-    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum-this->reciter.log.doneWordNum));
     ui->wordsNum->adjustSize();
 
     ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
@@ -316,11 +311,11 @@ void MainWindow::on_reviewAndTest_clicked()
 void MainWindow::on_ReviewAndTest_back_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
-    this->reciter.indexOfGoStudy = this->reciter.log.index_recordOfGoStudy;
+    this->reciter.log.index_recordOfGoStudy = this->reciter.log.index_recordOfGoStudy;
 
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
 
-    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum-this->reciter.log.doneWordNum));
     ui->wordsNum->adjustSize();
 
     ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
