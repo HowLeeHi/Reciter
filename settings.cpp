@@ -7,7 +7,7 @@ Settings::Settings()
 
 void Settings::read()
 {
-    ifstream fin("./settings/settings.txt");
+    ifstream fin(QCoreApplication::applicationDirPath().toStdString()+"/settings/settings.txt");
 
     if(fin)
     {
@@ -17,14 +17,16 @@ void Settings::read()
     {
         this->filename_record = "null";
         this->filepath_record = "./";
-        _mkdir("./settings/");
+        QDir dir;
+        if(!dir.exists(QCoreApplication::applicationDirPath()+"/settings"))
+            dir.mkdir(QCoreApplication::applicationDirPath()+"/settings");
         this->write();
     }
 }
 
 void Settings::write()
 {
-    ofstream fout("./settings/settings.txt");
+    ofstream fout(QCoreApplication::applicationDirPath().toStdString()+"/settings/settings.txt");
 
     fout << this->filename_record << endl << this->filepath_record;
 }

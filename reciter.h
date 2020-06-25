@@ -6,6 +6,8 @@
 #include "worditem.h"
 #include "settings.h"
 #include "log.h"
+#include <QCoreApplication>
+#include <QDir>
 using namespace std;
 
 

@@ -6,6 +6,8 @@
 #include <fstream>
 #include <direct.h>
 #include <io.h>
+#include <QCoreApplication>
+#include <QDir>
 using namespace std;
 
 class Log

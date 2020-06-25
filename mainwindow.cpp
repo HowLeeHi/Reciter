@@ -58,7 +58,7 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
     QFileInfo fi;
     file_full = QFileDialog::getOpenFileName(this,
                                              tr("选择"),
-                                             "./",
+                                             QCoreApplication::applicationDirPath()+"/wordlist",
                                              tr("textfile(*.txt)"));
     fi = QFileInfo(file_full);
     file_name = fi.fileName();
@@ -66,12 +66,14 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
 
     if(file_name.isEmpty())
     {
-        this->reciter.set_address("null.txt");
+        this->reciter.set_address(QCoreApplication::applicationDirPath().toStdString()+"/wordlist/null.txt");
         ui->wordListName->setText("null");
 
         this->reciter.settings.filename_record = "null";
         this->reciter.settings.filepath_record = "./";
         this->reciter.settings.write();
+
+        this->reciter.log.change_wordlistname(this->reciter.settings.filename_record);
     }
     else
     {
@@ -81,11 +83,28 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
         this->reciter.settings.filename_record = file_name.toStdString();
         this->reciter.settings.filepath_record = file_path.toStdString();
         this->reciter.settings.write();
+
+        this->reciter.log.change_wordlistname(this->reciter.settings.filename_record);
     }
 
     this->reciter.load_wordlist();
 
     this->reciter.update_log();
+
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->adjustSize();
+
+    ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
+    ui->listDone->adjustSize();
+
+    ui->listSize->setText("/"+QString::number(this->reciter.wordlist.size()));
+    ui->listSize->adjustSize();
+
+    ui->daysLeft->setText(QString::number(QDate::currentDate().daysTo(this->reciter.log.deadline)));
+    ui->daysLeft->adjustSize();
+
+    ui->dayMax->setText("/"+QString::number(this->reciter.log.daysNum));
+    ui->dayMax->adjustSize();
 }
 
 void MainWindow::on_goStudy_clicked()

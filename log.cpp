@@ -8,7 +8,7 @@ Log::Log(string wordlistname)
 
 void Log::read()
 {
-    ifstream fin("./log/log_"+this->wordlistname+".txt");
+    ifstream fin(QCoreApplication::applicationDirPath().toStdString()+"/log/log_"+this->wordlistname+".txt");
     string buff;
 
     if(fin)
@@ -32,15 +32,18 @@ void Log::read()
         this->daysNum = startDate.daysTo(deadline);
         this->lastPlan = QDate::fromString("2000/1/1","yyyy/M/d");
         this->generate_plan(0);
-        if(_access(".//log",0)==-1)
-            _mkdir("./log/");
+
+        QDir dir;
+        if(!dir.exists(QCoreApplication::applicationDirPath()+"/log"))
+            dir.mkdir(QCoreApplication::applicationDirPath()+"/log");
+
         this->write();
     }
 }
 
 void Log::write()
 {
-    ofstream fout("./log/log_"+this->wordlistname+".txt");
+    ofstream fout(QCoreApplication::applicationDirPath().toStdString()+"/log/log_"+this->wordlistname+".txt");
 
     fout << this->index_recordOfGoStudy << endl
          << this->startDate.toString("yyyy/M/d").toStdString() << endl

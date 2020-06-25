@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 #include <direct.h>
+#include <QCoreApplication>
+#include <QDir>
 using namespace std;
 
 class Settings
