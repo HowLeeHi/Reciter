@@ -16,6 +16,7 @@ public:
     string wordlist_address;		        //单词表文件按目标路径
     vector<WordItem> wordlist;              //存放单词，向量内的元素为WordItem类对象
     Log log;                                //用户日志
+    unsigned int indexOfGoStudy;
 
     Reciter();
     ~Reciter();
@@ -38,7 +39,8 @@ public:
     int test_answer_ENG(unsigned int i, unsigned int array[4]);			//选择英语解释，返回正误
     void search_Word();                     //模拟查找单词
     bool exam(int testNum, unsigned int *array);                            //模拟考试
-    void update_log();
+    void update_log();                      //更新日志
+    void reset_plan();                      //重置单词表计划
 };
 
 

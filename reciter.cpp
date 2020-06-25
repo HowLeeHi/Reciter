@@ -30,6 +30,8 @@ Reciter::Reciter()
     this->load_wordlist();
 
     this->update_log();
+
+    this->indexOfGoStudy = this->log.index_recordOfGoStudy;
 }
 
 
@@ -289,4 +291,10 @@ void Reciter::update_log()
 {
     this->log.change_wordlistname(this->settings.filename_record);
     this->log.generate_plan(this->wordlist.size());
+}
+
+void Reciter::reset_plan()
+{
+    this->log.reset_plan(this->wordlist.size());
+    this->indexOfGoStudy = this->log.index_recordOfGoStudy;
 }

@@ -66,7 +66,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    unsigned int index;
     //----------测验用--------------
     int scores;                                     //分数
     unsigned int index_options[4];                  //选项对应单词表下标
