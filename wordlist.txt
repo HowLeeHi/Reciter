@@ -1334,6 +1334,8 @@ coherent
 adj.
 粘在一起的，结合在一起的
 
+
+
 coincide
 vi.
 相符合，相一致
@@ -1563,7 +1565,8 @@ I must made a concession to him.
 我必须对他让步。
 
 confirmation
-n. 证实，证明
+n.
+证实，证明
 We are waiting for confirmation of the news.
 我们正等着该消息的证实。
 
@@ -1715,6 +1718,8 @@ cosmos
 n.
 宇宙
 
+
+
 couch
 n.
 长沙发，睡椅，卧榻
@@ -1842,7 +1847,8 @@ a six-cylinder car
 六汽缸的汽车
 
 damn
-v. 诅咒
+v.
+诅咒
 I'll be damned if I'll go.
 我要是去就不是人。
 
