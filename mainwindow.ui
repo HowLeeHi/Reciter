@@ -459,12 +459,12 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>30</x>
           <y>140</y>
-          <width>194</width>
+          <width>339</width>
           <height>34</height>
          </rect>
         </property>
@@ -476,7 +476,7 @@
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>100</width>
              <height>20</height>
             </size>
            </property>
@@ -499,6 +499,12 @@
            <property name="text">
             <string>TextLabel</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -508,7 +514,7 @@
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>100</width>
              <height>20</height>
             </size>
            </property>

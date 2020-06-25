@@ -37,6 +37,7 @@ Reciter::Reciter()
 
 Reciter::~Reciter()
 {
+    this->log.index_recordOfGoStudy = this->indexOfGoStudy;
     this->log.write();
 }
 
