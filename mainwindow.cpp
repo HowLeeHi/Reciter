@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qfiledialog.h"
+#include "qdebug.h"
 #pragma execution_character_set("utf-8")
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -87,7 +88,7 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
 
     this->reciter.change_log();
 
-    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum));
+    ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum-this->reciter.log.doneWordNum));
     ui->wordsNum->adjustSize();
 
     ui->listDone->setText(QString::number(this->reciter.log.index_recordOfGoStudy));
@@ -252,6 +253,7 @@ void MainWindow::on_GoStudy_know_clicked()
 void MainWindow::on_Schedule_back_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+
     this->reciter.log.read();
 
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
@@ -279,7 +281,8 @@ void MainWindow::on_changePlan_clicked()
     ui->Schedule_startDate->setText(this->reciter.log.startDate.toString("yyyy/M/d"));
     ui->Schedule_startDate->adjustSize();
 
-    ui->dateEdit->setDate(this->reciter.log.deadline);
+    ui->dateEdit->setDate(this->reciter.log.deadline);//这个语句会触发槽函数
+    this->reciter.log.read();
 
     ui->Schedule_daysNum->setText(QString::number(this->reciter.log.daysNum));
     ui->Schedule_daysNum->adjustSize();
@@ -311,7 +314,6 @@ void MainWindow::on_reviewAndTest_clicked()
 void MainWindow::on_ReviewAndTest_back_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
-    this->reciter.log.index_recordOfGoStudy = this->reciter.log.index_recordOfGoStudy;
 
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
 
