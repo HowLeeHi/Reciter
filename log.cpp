@@ -75,13 +75,17 @@ void Log::generate_plan(unsigned int wordlistSize) //检查今天是否已经计
         if(this->deadline <= QDate::currentDate())
         {
             this->newWordNum = wordlistSize - this->index_recordOfGoStudy;
-            this->reviewNum = wordlistSize - this->index_recordOfGoStudy;
+            this->reviewNum = 3*this->newWordNum;
             this->doneWordNum = 0;
+
+            //每日复习数超过单词总数，这是不允许的
+            if(this->reviewNum > wordlistSize)
+                this->reviewNum = wordlistSize;
         }
         else
         {
             this->newWordNum = (wordlistSize - this->index_recordOfGoStudy)/QDate::currentDate().daysTo(this->deadline);
-            this->reviewNum = wordlistSize/this->startDate.daysTo(this->deadline);
+            this->reviewNum = 3*this->newWordNum;
             this->doneWordNum = 0;
 
             //天数太多导致每日学词数为0，这是不允许的
@@ -91,6 +95,10 @@ void Log::generate_plan(unsigned int wordlistSize) //检查今天是否已经计
             //天数太多导致每日复习数为0，这是不允许的
             if((this->reviewNum==0)&&((wordlistSize%QDate::currentDate().daysTo(this->deadline))!=0))
                 this->reviewNum = 1;
+
+            //每日复习数超过单词总数，这是不允许的
+            if(this->reviewNum > wordlistSize)
+                this->reviewNum = wordlistSize;
         }
         this->lastPlan = QDate::currentDate();
     }
@@ -101,13 +109,17 @@ void Log::change_plan(unsigned int wordlistSize) //如果用户手动修改了�
     if(this->deadline <= QDate::currentDate())
     {
         this->newWordNum = wordlistSize - this->index_recordOfGoStudy;
-        this->reviewNum = wordlistSize - this->index_recordOfGoStudy;
+        this->reviewNum = 3*this->newWordNum;
         this->doneWordNum = 0;
+
+        //每日复习数超过单词总数，这是不允许的
+        if(this->reviewNum > wordlistSize)
+            this->reviewNum = wordlistSize;
     }
     else
     {
         this->newWordNum = (wordlistSize - this->index_recordOfGoStudy)/QDate::currentDate().daysTo(this->deadline);
-        this->reviewNum = wordlistSize/this->startDate.daysTo(this->deadline);
+        this->reviewNum = 3*this->newWordNum;
         this->doneWordNum = 0;
 
         //天数太多导致每日学词数为0，这是不允许的
@@ -117,6 +129,10 @@ void Log::change_plan(unsigned int wordlistSize) //如果用户手动修改了�
         //天数太多导致每日复习数为0，这是不允许的
         if((this->reviewNum==0)&&((wordlistSize%QDate::currentDate().daysTo(this->deadline))!=0))
             this->reviewNum = 1;
+
+        //每日复习数超过单词总数，这是不允许的
+        if(this->reviewNum > wordlistSize)
+            this->reviewNum = wordlistSize;
     }
     this->lastPlan = QDate::currentDate();
 
