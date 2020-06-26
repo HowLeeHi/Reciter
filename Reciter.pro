@@ -30,14 +30,16 @@ SOURCES += \
     worditem.cpp \
     reciter.cpp \
     settings.cpp \
-    log.cpp
+    log.cpp \
+    reviewlist.cpp
 
 HEADERS += \
         mainwindow.h \
     worditem.h \
     reciter.h \
     settings.h \
-    log.h
+    log.h \
+    reviewlist.h
 
 FORMS += \
         mainwindow.ui

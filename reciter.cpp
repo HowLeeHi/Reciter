@@ -33,6 +33,10 @@ Reciter::Reciter()
     this->load_wordlist();
 
     this->change_log();
+
+    this->change_review();
+
+    this->reset = false;
 }
 
 
@@ -296,4 +300,61 @@ void Reciter::change_log()
 void Reciter::reset_plan()
 {
     this->log.reset_plan(this->wordlist.size());
+}
+
+void Reciter::change_review()
+{
+    this->review.wordlistname = this->settings.filename_record;
+    this->review.read();
+}
+
+bool Reciter::reset_review()
+{
+    QDir dir(QString::fromStdString(QCoreApplication::applicationDirPath().toStdString()+
+                                    "/review/"+
+                                    this->settings.filename_record));
+    QFileInfoList fileList;
+    QFileInfo curFile;
+    if(!dir.exists())  {return false;}//文件不存，则返回false
+    fileList=dir.entryInfoList(QDir::Dirs|QDir::Files
+                               |QDir::Readable|QDir::Writable
+                               |QDir::Hidden|QDir::NoDotAndDotDot
+                               ,QDir::Name);
+    while(fileList.size()>0)
+    {
+        int infoNum=fileList.size();
+        for(int i=infoNum-1;i>=0;i--)
+        {
+            curFile=fileList[i];
+            if(curFile.isFile())//如果是文件，删除文件
+            {
+                QFile fileTemp(curFile.filePath());
+                fileTemp.remove();
+                fileList.removeAt(i);
+            }
+            if(curFile.isDir())//如果是文件夹
+            {
+                QDir dirTemp(curFile.filePath());
+                QFileInfoList fileList1=dirTemp.entryInfoList(QDir::Dirs|QDir::Files
+                                                              |QDir::Readable|QDir::Writable
+                                                              |QDir::Hidden|QDir::NoDotAndDotDot
+                                                              ,QDir::Name);
+                if(fileList1.size()==0)//下层没有文件或文件夹
+                {
+                    dirTemp.rmdir(".");
+                    fileList.removeAt(i);
+                }
+                else//下层有文件夹或文件
+                {
+                    for(int j=0;j<fileList1.size();j++)
+                    {
+                        if(!(fileList.contains(fileList1[j])))
+                            fileList.append(fileList1[j]);
+                    }
+                }
+            }
+        }
+    }
+    this->review.read();
+    return true;
 }

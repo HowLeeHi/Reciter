@@ -88,6 +88,8 @@ void MainWindow::on_changeList_clicked()    //手动选择文件
 
     this->reciter.change_log();
 
+    this->reciter.change_review();
+
     ui->wordsNum->setText(QString::number(this->reciter.log.newWordNum-this->reciter.log.doneWordNum));
     ui->wordsNum->adjustSize();
 
@@ -174,6 +176,8 @@ void MainWindow::on_GoStudy_back_clicked()
 void MainWindow::on_GoStudy_unknow_clicked()
 {
     ui->stackedWidget_2->setCurrentIndex(1);
+
+    this->reciter.review.add(this->reciter.wordlist[this->reciter.log.index_recordOfGoStudy]);
 }
 
 void MainWindow::on_GoStudy_next_clicked()
@@ -255,6 +259,7 @@ void MainWindow::on_Schedule_back_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 
     this->reciter.log.read();
+    this->reciter.reset = false;
 
     ui->wordListName->setText(QString::fromStdString(this->reciter.settings.filename_record));
 
@@ -277,6 +282,8 @@ void MainWindow::on_Schedule_back_clicked()
 void MainWindow::on_changePlan_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+
+    this->reciter.reset = false;
 
     ui->Schedule_startDate->setText(this->reciter.log.startDate.toString("yyyy/M/d"));
     ui->Schedule_startDate->adjustSize();
@@ -510,6 +517,7 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
     }
 
     this->reciter.log.change_plan(this->reciter.wordlist.size());
+    this->reciter.reset = false;
 
     ui->Schedule_daysNum->setText(QString::number(this->reciter.log.daysNum));
     ui->Schedule_daysNum->adjustSize();
@@ -528,11 +536,14 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
 void MainWindow::on_Schudule_OK_clicked()
 {
     this->reciter.log.write();
+    if(this->reciter.reset)
+        this->reciter.reset_review();
 }
 
 void MainWindow::on_Schedule_reset_clicked()
 {
     this->reciter.reset_plan();
+    this->reciter.reset = true;
 
     ui->Schedule_startDate->setText(this->reciter.log.startDate.toString("yyyy/M/d"));
     ui->Schedule_startDate->adjustSize();

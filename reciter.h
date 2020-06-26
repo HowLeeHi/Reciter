@@ -6,6 +6,7 @@
 #include "worditem.h"
 #include "settings.h"
 #include "log.h"
+#include "reviewlist.h"
 #include <QCoreApplication>
 #include <QDir>
 using namespace std;
@@ -18,6 +19,8 @@ public:
     string wordlist_address;		        //单词表文件按目标路径
     vector<WordItem> wordlist;              //存放单词，向量内的元素为WordItem类对象
     Log log;                                //用户日志
+    ReviewList review;                      //处理复习单词表
+    bool reset;                             //是否重置复习计划
 
     Reciter();
     ~Reciter();
@@ -42,6 +45,8 @@ public:
     bool exam(int testNum, unsigned int *array);                            //模拟考试
     void change_log();                      //更换日志
     void reset_plan();                      //重置单词表计划
+    void change_review();                   //更换复习单词表
+    bool reset_review();                    //重置复习计划
 };
 
 
