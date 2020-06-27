@@ -177,7 +177,7 @@ int Reciter::test_answer_CN(unsigned int i, unsigned int array[4])
     unsigned int tmp1 = i;
     //随机生成4个错误选项
     for(int j=0;j<4;j++){
-        unsigned int tmp2=rand()%(this->get_size());
+        unsigned int tmp2=rand()%(this->review.reviewlist.size());
         bool repeat=false;
         //检查是否有重复的情况
         for(int k=0;k<j;k++){
@@ -202,7 +202,7 @@ int Reciter::test_answer_ENG(unsigned int i, unsigned int array[4])
     unsigned int tmp1 = i;
     //随机生成4个错误选项
     for(int j=0;j<4;j++){
-        unsigned int tmp2=rand()%(this->get_size());
+        unsigned int tmp2=rand()%(this->review.reviewlist.size());
         bool repeat=false;
         //检查是否有重复的情况
         for(int k=0;k<j;k++){
@@ -252,7 +252,7 @@ bool Reciter::exam(int testNum, unsigned int *array) //array存放单词所对�
         //随机选取testNum个单词
         srand(unsigned(time(0)));
         for(int i = 0; i < testNum; i++){
-            unsigned int tmp = rand()%(this->get_size());
+            unsigned int tmp = rand()%(this->review.reviewlist.size());
             //检查随机生成的单词是否重复
             bool repeat=false;
             for(int j=0;j<i;j++){

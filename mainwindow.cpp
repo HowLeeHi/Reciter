@@ -371,20 +371,20 @@ void MainWindow::on_test_confirm_button_released()
     this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
     QTextCodec *codec=QTextCodec::codecForName("GB2312");
     if(exam_flag == true){
-        ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->index_testNum[n]].getEnglish()));
-        ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
-        ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
-        ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
-        ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
+        ui->question->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_testNum[n]].getEnglish()));
+        ui->Button_A->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[0]].getChinese().c_str()));
+        ui->Button_B->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[1]].getChinese().c_str()));
+        ui->Button_C->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[2]].getChinese().c_str()));
+        ui->Button_D->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[3]].getChinese().c_str()));
         //调整大小
 //        ui->question->setWordWrap(true);
 //        ui->question->setAlignment(Qt::AlignTop);
     } else {
-        ui->question->setText(codec->toUnicode(this->reciter.wordlist[this->index_testNum[n]].getChinese().c_str()));
-        ui->Button_A->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[0]].getEnglish()));
-        ui->Button_B->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[1]].getEnglish()));
-        ui->Button_C->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[2]].getEnglish()));
-        ui->Button_D->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[3]].getEnglish()));
+        ui->question->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_testNum[n]].getChinese().c_str()));
+        ui->Button_A->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[0]].getEnglish()));
+        ui->Button_B->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[1]].getEnglish()));
+        ui->Button_C->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[2]].getEnglish()));
+        ui->Button_D->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[3]].getEnglish()));
         ui->question->setWordWrap(true);
         ui->question->setAlignment(Qt::AlignTop);
     }
@@ -399,19 +399,19 @@ void MainWindow::on_test_next_released()
         this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
         QTextCodec *codec=QTextCodec::codecForName("GB2312");
         if(exam_flag == true){
-            ui->question->setText(QString::fromStdString(this->reciter.wordlist[this->index_testNum[n]].getEnglish()));
-            ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
-            ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
-            ui->Button_C->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[2]].getChinese().c_str()));
-            ui->Button_D->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[3]].getChinese().c_str()));
+            ui->question->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_testNum[n]].getEnglish()));
+            ui->Button_A->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[0]].getChinese().c_str()));
+            ui->Button_B->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[1]].getChinese().c_str()));
+            ui->Button_C->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[2]].getChinese().c_str()));
+            ui->Button_D->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[3]].getChinese().c_str()));
             ui->question->setWordWrap(true);
             ui->question->setAlignment(Qt::AlignTop);
         } else {
-            ui->question->setText(codec->toUnicode(this->reciter.wordlist[this->index_testNum[n]].getChinese().c_str()));
-            ui->Button_A->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[0]].getEnglish()));
-            ui->Button_B->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[1]].getEnglish()));
-            ui->Button_C->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[2]].getEnglish()));
-            ui->Button_D->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[3]].getEnglish()));
+            ui->question->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_testNum[n]].getChinese().c_str()));
+            ui->Button_A->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[0]].getEnglish()));
+            ui->Button_B->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[1]].getEnglish()));
+            ui->Button_C->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[2]].getEnglish()));
+            ui->Button_D->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[3]].getEnglish()));
 //            ui->question->setWordWrap(true);
 //            ui->question->setAlignment(Qt::AlignTop);
         }
