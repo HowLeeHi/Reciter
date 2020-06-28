@@ -306,7 +306,7 @@ void MainWindow::on_reviewAndTest_clicked()
     ui->stackedWidget->setCurrentIndex(2);
     if(!this->reciter.exam(testnum, index_testNum)){
         ui->stackedWidget_3->setCurrentIndex(3);
-        ui->label_3->setText("单词表为空，请重新添加");
+        ui->label_3->setText("今日没有复习计划");
         ui->label_3->adjustSize();
         return;
     }
@@ -352,7 +352,7 @@ void MainWindow::on_test_confirm_button_released()
 {
     if(!this->reciter.exam(testnum, index_testNum)){
         ui->stackedWidget_3->setCurrentIndex(3);
-        ui->label_3->setText("单词表为空，请重新添加");
+        ui->label_3->setText("今日没有复习计划");
         ui->label_3->adjustSize();
         return;
     }else{
