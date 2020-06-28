@@ -1,8 +1,9 @@
-﻿#include<string>
+﻿#include <string>
 #include <fstream>
-#include<algorithm>
+#include <algorithm>
 #include "reciter.h"
-#include<ctime>
+#include <ctime>
+#include <string.h>
 using namespace std;
 
 class myless
@@ -177,14 +178,14 @@ int Reciter::test_answer_CN(unsigned int i, unsigned int array[4])
     unsigned int tmp1 = i;
     //随机生成4个错误选项
     for(int j=0;j<4;j++){
-        unsigned int tmp2=rand()%(this->review.reviewlist.size());
+        unsigned int tmp2=rand()%(this->get_size());
         bool repeat=false;
         //检查是否有重复的情况
         for(int k=0;k<j;k++){
             if(array[k] == tmp2)
                 repeat=true;
         }
-        if(repeat || (tmp2 == tmp1))
+        if(repeat || (this->review.reviewlist[tmp1].word == this->wordlist[tmp1].word))
             j--;
         else
             array[j]=tmp2;
@@ -209,7 +210,7 @@ int Reciter::test_answer_ENG(unsigned int i, unsigned int array[4])
             if(array[k] == tmp2)
                 repeat=true;
         }
-        if(repeat || (tmp2 == tmp1))
+        if(repeat || (this->review.reviewlist[tmp1].word == this->wordlist[tmp1].word))
             j--;
         else
             array[j]=tmp2;
@@ -248,7 +249,7 @@ void Reciter::search_Word()
 // 汉译英 + 英译汉array存储testnum个题目，单词表为空返回false
 bool Reciter::exam(int testNum, unsigned int *array) //array存放单词所对应的编号
 {
-    if(this->get_size()>0){
+    if(this->review.reviewlist.size() >0){
         //随机选取testNum个单词
         srand(unsigned(time(0)));
         for(int i = 0; i < testNum; i++){
