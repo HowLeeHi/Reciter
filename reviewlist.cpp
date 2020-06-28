@@ -11,6 +11,8 @@ ReviewList::ReviewList(string wordlistname)
 void ReviewList::read()
 {
     QDir dir;
+    if(!dir.exists(QCoreApplication::applicationDirPath()+"/review/"))
+        dir.mkdir(QCoreApplication::applicationDirPath()+"/review/");
     if(!dir.exists(QCoreApplication::applicationDirPath()+"/review/"+QString::fromStdString(this->wordlistname)))
         dir.mkdir(QCoreApplication::applicationDirPath()+"/review/"+QString::fromStdString(this->wordlistname));
 
