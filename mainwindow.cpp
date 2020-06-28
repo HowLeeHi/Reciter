@@ -409,6 +409,7 @@ void MainWindow::on_test_confirm_button_released()
         switch(ans){
         case 0:
             ui->Button_A->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
+            break;
         case 1:
             ui->Button_B->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
             break;
@@ -464,6 +465,7 @@ void MainWindow::on_test_next_released()
             switch(ans){
             case 0:
                 ui->Button_A->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
+                break;
             case 1:
                 ui->Button_B->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
                 break;
