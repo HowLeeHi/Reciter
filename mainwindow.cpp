@@ -430,10 +430,19 @@ void MainWindow::on_test_confirm_button_released()
 void MainWindow::on_test_next_released()
 {
     if(n < this->testnum){
-        //更新题面.英译汉
+        //更新题面
+        if( ui->Button_A->isChecked())
+           ui->Button_A->setChecked( false );
+        if( ui->Button_B->isChecked())
+           ui->Button_B->setChecked( false );
+        if( ui->Button_C->isChecked())
+           ui->Button_C->setChecked( false );
+        if( ui->Button_D->isChecked())
+           ui->Button_D->setChecked( false );
         this->ans = reciter.test_answer_CN(index_testNum[n], index_options);
         QTextCodec *codec=QTextCodec::codecForName("GB2312");
         if(exam_flag == true){
+            //英译汉
             ui->question->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_testNum[n]].getEnglish()));
             ui->Button_A->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[0]].getChinese().c_str()));
             ui->Button_B->setText(codec->toUnicode(this->reciter.wordlist[this->index_options[1]].getChinese().c_str()));
@@ -457,6 +466,7 @@ void MainWindow::on_test_next_released()
             ui->question->setWordWrap(true);
             ui->question->setAlignment(Qt::AlignTop);
         } else {
+            //汉译英
             ui->question->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_testNum[n]].getChinese().c_str()));
             ui->Button_A->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[0]].getEnglish()));
             ui->Button_B->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[1]].getEnglish()));
@@ -506,31 +516,6 @@ void MainWindow::on_test_next_released()
     }
 }
 
-//定义分数变化
-void MainWindow::on_Button_A_released()
-{
-    if(ans==0){
-        this->scores++;
-    }
-}
-void MainWindow::on_Button_B_released()
-{
-    if(ans==1){
-        this->scores++;
-    }
-}
-void MainWindow::on_Button_C_released()
-{
-    if(ans==2){
-        this->scores++;
-    }
-}
-void MainWindow::on_Button_D_released()
-{
-    if(ans==3){
-        this->scores++;
-    }
-}
 
 //定义考试类型
 void MainWindow::on_En_Zh_clicked()
@@ -627,3 +612,58 @@ void MainWindow::on_Schedule_reset_clicked()
     ui->Schedule_planToDo->adjustSize();
     ui->Schedule_planReview->adjustSize();
 }
+//定义分数变化
+//void MainWindow::on_Button_A_released()
+//{
+//    if(ans==0){
+//        this->scores++;
+//    }
+//}
+//void MainWindow::on_Button_B_released()
+//{
+//    if(ans==1){
+//        this->scores++;
+//    }
+//}
+//void MainWindow::on_Button_C_released()
+//{
+//    if(ans==2){
+//        this->scores++;
+//    }
+//}
+//void MainWindow::on_Button_D_released()
+//{
+//    if(ans==3){
+//        this->scores++;
+//    }
+//}
+
+void MainWindow::on_Button_A_toggled(bool checked)
+{
+    if(checked && ans==0){
+        this->scores++;
+    }
+}
+
+void MainWindow::on_Button_B_toggled(bool checked)
+{
+    if(checked && ans==1){
+        this->scores++;
+    }
+}
+
+void MainWindow::on_Button_C_toggled(bool checked)
+{
+    if(checked && ans==2){
+        this->scores++;
+    }
+}
+
+void MainWindow::on_Button_D_toggled(bool checked)
+{
+    if(checked && ans==3){
+        this->scores++;
+    }
+}
+
+

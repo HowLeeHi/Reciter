@@ -45,13 +45,13 @@ private slots:
 
     void on_test_next_released();
 
-    void on_Button_A_released();
+//    void on_Button_A_released();
 
-    void on_Button_B_released();
+//    void on_Button_B_released();
 
-    void on_Button_C_released();
+//    void on_Button_C_released();
 
-    void on_Button_D_released();
+//    void on_Button_D_released();
 
     void on_En_Zh_clicked();
 
@@ -63,6 +63,14 @@ private slots:
     void on_Schudule_OK_clicked();
 
     void on_Schedule_reset_clicked();
+
+    void on_Button_A_toggled(bool checked);
+
+    void on_Button_B_toggled(bool checked);
+
+    void on_Button_D_toggled(bool checked);
+
+    void on_Button_C_toggled(bool checked);
 
 private:
     Ui::MainWindow *ui;
