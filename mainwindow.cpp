@@ -602,6 +602,7 @@ void MainWindow::on_Schudule_OK_clicked()
     this->reciter.log.write();
     if(this->reciter.reset)
         this->reciter.reset_review();
+    MainWindow::on_Schedule_back_clicked();
 }
 
 void MainWindow::on_Schedule_reset_clicked()
