@@ -731,7 +731,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="layoutWidget">
@@ -812,9 +812,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>30</y>
+          <y>20</y>
           <width>341</width>
-          <height>441</height>
+          <height>451</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_5">
@@ -828,9 +828,9 @@
            </property>
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
+             <pointsize>18</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
@@ -947,11 +947,17 @@
        <widget class="QLabel" name="grade">
         <property name="geometry">
          <rect>
-          <x>70</x>
+          <x>20</x>
           <y>150</y>
-          <width>251</width>
-          <height>101</height>
+          <width>361</width>
+          <height>181</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>20</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;您得了&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

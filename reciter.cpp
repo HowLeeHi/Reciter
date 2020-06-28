@@ -185,7 +185,7 @@ int Reciter::test_answer_CN(unsigned int i, unsigned int array[4])
             if(array[k] == tmp2)
                 repeat=true;
         }
-        if(repeat || (this->review.reviewlist[tmp1].word == this->wordlist[tmp1].word))
+        if(repeat || (this->review.reviewlist[tmp1].word == this->wordlist[tmp2].word))
             j--;
         else
             array[j]=tmp2;
@@ -210,7 +210,7 @@ int Reciter::test_answer_ENG(unsigned int i, unsigned int array[4])
             if(array[k] == tmp2)
                 repeat=true;
         }
-        if(repeat || (this->review.reviewlist[tmp1].word == this->wordlist[tmp1].word))
+        if(repeat || (this->review.reviewlist[tmp1].word == this->wordlist[tmp2].word))
             j--;
         else
             array[j]=tmp2;

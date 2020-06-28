@@ -408,16 +408,15 @@ void MainWindow::on_test_confirm_button_released()
         ui->Button_D->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[3]].getEnglish()));
         switch(ans){
         case 0:
-            ui->Button_A->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
-            break;
+            ui->Button_A->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
         case 1:
-            ui->Button_B->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            ui->Button_B->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
             break;
         case 2:
-            ui->Button_C->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            ui->Button_C->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
             break;
         case 3:
-            ui->Button_D->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            ui->Button_D->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
             break;
         }
         ui->question->setWordWrap(true);
@@ -464,16 +463,15 @@ void MainWindow::on_test_next_released()
             ui->Button_D->setText(QString::fromStdString(this->reciter.wordlist[this->index_options[3]].getEnglish()));
             switch(ans){
             case 0:
-                ui->Button_A->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
-                break;
+                ui->Button_A->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
             case 1:
-                ui->Button_B->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                ui->Button_B->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
                 break;
             case 2:
-                ui->Button_C->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                ui->Button_C->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
                 break;
             case 3:
-                ui->Button_D->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                ui->Button_D->setText(QString::fromStdString(this->reciter.review.reviewlist[this->index_options[ans]].getEnglish()));
                 break;
             }
 //            ui->question->setWordWrap(true);
