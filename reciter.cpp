@@ -203,7 +203,7 @@ int Reciter::test_answer_ENG(unsigned int i, unsigned int array[4])
     unsigned int tmp1 = i;
     //随机生成4个错误选项
     for(int j=0;j<4;j++){
-        unsigned int tmp2=rand()%(this->review.reviewlist.size());
+        unsigned int tmp2=rand()%(this->get_size());
         bool repeat=false;
         //检查是否有重复的情况
         for(int k=0;k<j;k++){
