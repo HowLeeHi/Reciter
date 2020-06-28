@@ -386,12 +386,16 @@ void MainWindow::on_test_confirm_button_released()
         switch(ans){
         case 0:
             ui->Button_A->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            break;
         case 1:
             ui->Button_B->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            break;
         case 2:
             ui->Button_C->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            break;
         case 3:
             ui->Button_D->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            break;
         }
         //调整大小
 //        ui->question->setWordWrap(true);
@@ -405,12 +409,16 @@ void MainWindow::on_test_confirm_button_released()
         switch(ans){
         case 0:
             ui->Button_A->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            break;
         case 1:
             ui->Button_B->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            break;
         case 2:
             ui->Button_C->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            break;
         case 3:
             ui->Button_D->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+            break;
         }
         ui->question->setWordWrap(true);
         ui->question->setAlignment(Qt::AlignTop);
@@ -434,12 +442,16 @@ void MainWindow::on_test_next_released()
             switch(ans){
             case 0:
                 ui->Button_A->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                break;
             case 1:
                 ui->Button_B->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                break;
             case 2:
                 ui->Button_C->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                break;
             case 3:
                 ui->Button_D->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                break;
             }
 
             ui->question->setWordWrap(true);
@@ -453,12 +465,16 @@ void MainWindow::on_test_next_released()
             switch(ans){
             case 0:
                 ui->Button_A->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                break;
             case 1:
                 ui->Button_B->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                break;
             case 2:
                 ui->Button_C->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                break;
             case 3:
                 ui->Button_D->setText(codec->toUnicode(this->reciter.review.reviewlist[this->index_options[ans]].getChinese().c_str()));
+                break;
             }
 //            ui->question->setWordWrap(true);
 //            ui->question->setAlignment(Qt::AlignTop);
